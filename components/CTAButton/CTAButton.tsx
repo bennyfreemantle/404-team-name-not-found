@@ -1,12 +1,19 @@
-import React from 'react'
+import React from "react";
 
 type CTAButtonProp = {
-    text: string,
-    handleClick: ()=>void
-}
+  className?: string;
+  text: string;
+  handleClick: () => void;
+};
 
-export default function CTAButton({text, handleClick}: CTAButtonProp) {
+export default function CTAButton({
+  className,
+  text,
+  handleClick,
+}: CTAButtonProp) {
   return (
-    <button onClick={handleClick}>{text}</button>
-  )
+    <button className={className} onClick={handleClick}>
+      {text}
+    </button>
+  );
 }
