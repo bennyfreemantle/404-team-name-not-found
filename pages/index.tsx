@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
+import Hero from "../components/Hero/Hero";
 
 export default function Home() {
   return (
@@ -15,16 +16,7 @@ export default function Home() {
         </Head>
         <Header />
       </div>
-      <div className="w-full h-[75vh] relative">
-        <p>hello world</p>
-        <Image
-          className="object-cover object-center"
-          fill
-          priority
-          src="/HeroBackground.jpg"
-          alt="a group of friends watching a movie"
-        />
-      </div>
+      <Hero />
       <div className="flex flex-col min-h-screen container mx-auto my-0 p-3">
         <main className="flex-1 text-amber-50">
           <p>This is the rest of the main content</p>
