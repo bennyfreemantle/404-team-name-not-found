@@ -1,7 +1,7 @@
 import React from "react";
 import LoginButton from "../LoginButton/LoginButton";
 import Logo from "../Logo/Logo";
-import { RxHamburgerMenu } from "react-icons/rx";
+import Navbar from "../Navbar/Navbar";
 
 export default function Header() {
   return (
@@ -12,9 +12,7 @@ export default function Header() {
       <span className="flex-1"></span>
       <div className="flex items-center gap-5">
         <LoginButton />
-        <button className="btn btn-square btn-ghost text-amber-50">
-          <RxHamburgerMenu size={35} />
-        </button>
+        <Navbar />
       </div>
     </header>
   );
