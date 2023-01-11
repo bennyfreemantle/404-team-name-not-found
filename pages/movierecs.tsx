@@ -7,9 +7,9 @@ import MovieCard from "../components/MovieCard/MovieCard";
 //heading
 //movie cards - component
 
-export default function Home() {
+export default function MovieRecs() {
   return (
-    <div className="bg-slate-800">
+    <div className="bg-slate-700">
       <div className="flex flex-col container mx-auto my-0 p-3">
         <Head>
           <title>CineMate</title>
@@ -20,11 +20,23 @@ export default function Home() {
         <Header />
       </div>
       
-      <div className="flex flex-col min-h-screen container mx-auto my-0 p-3">
-        <main className="flex-1 text-amber-50">
-          <h2 className="text-amber-50 text-2xl py-5">Your Recommended Movies</h2>
-          <MovieCard/>
-        </main>
+      <div className="flex flex-col min-h-screen container mx-auto my-0 p-3 ">
+        <h2 className="text-amber-50 text-2xl py-5">Your Recommended Movies</h2>
+        <div className=" flex flex-wrap">
+          
+          
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
+           <MovieCard />
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
+         
+        </div>
         <Footer />
       </div>
     </div>
