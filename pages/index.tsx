@@ -24,8 +24,8 @@ export default function Home() {
           <p>This is the rest of the main content</p>
           {session && <p>User logged in {session.user.email}</p>}
         </main>
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 }
