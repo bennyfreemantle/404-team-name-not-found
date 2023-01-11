@@ -1,3 +1,4 @@
+import RecButton from '../RecButton/RecButton';
 //movie card
 //add to list button
 //image - sizing needs to be relative!
@@ -10,10 +11,12 @@ import Image from 'next/image';
 
 export default function MovieCard() {
   return (
-    <div className="w-[10vw] h-[50vh] relative">
+    <div className="w-[10vw]  relative bg-zinc-50">
+      
         <Image className="relativeobject-cover object-center" width={200} height={280} src="/AvatarImage.jpg" alt="avatar movie poster"/>
-        <p>Rating goes here</p>
-        <p>Movie title goes</p>
+        <p>⭐6</p>
+      <p>Avatar: The Way of Water</p>
+  
     </div>
   )
 }
