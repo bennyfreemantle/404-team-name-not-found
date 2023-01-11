@@ -22,7 +22,7 @@ export default function Home() {
       
       <div className="flex flex-col min-h-screen container mx-auto my-0 p-3">
         <main className="flex-1 text-amber-50">
-          <h2>Your Recommended Movies</h2>
+          <h2 className="text-amber-50 text-2xl py-5">Your Recommended Movies</h2>
           <MovieCard/>
         </main>
         <Footer />
