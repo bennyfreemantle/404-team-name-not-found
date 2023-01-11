@@ -21,8 +21,8 @@ export default function Home() {
         <main className="flex-1 text-amber-50">
           <p>This is the rest of the main content</p>
         </main>
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 }
