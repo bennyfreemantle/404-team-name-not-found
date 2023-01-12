@@ -28,6 +28,7 @@ export default function Login() {
               appearance={{ theme: ThemeSupa }}
               theme="dark"
               magicLink
+              redirectTo="/"
             />
           ) : (
             <p>User logged in {session.user.email}</p>
