@@ -3,15 +3,17 @@ import LoginButton from "../LoginButton/LoginButton";
 import Logo from "../Logo/Logo";
 import Navbar from "../Navbar/Navbar";
 
-export default function Header() {
+export default function Header({
+  disableButton = false,
+}: {
+  disableButton?: boolean;
+}) {
   return (
-    <header className="flex navbar bg-base-100">
-      <div>
-        <Logo />
-      </div>
+    <header className="flex h-20 navbar bg-base-100">
+      <Logo />
       <span className="flex-1"></span>
       <div className="flex items-center gap-5">
-        <LoginButton />
+        {disableButton ? "" : <LoginButton />}
         <Navbar />
       </div>
     </header>

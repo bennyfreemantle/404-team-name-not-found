@@ -8,21 +8,21 @@ export default function Navbar() {
 
   return (
     <div>
-      <nav>
+      <nav className="flex items-center">
         <button
           onClick={() => setIsNavOpen(!isNavOpen)}
-          className="btn btn-square btn-ghost text-amber-500"
+          className="btn btn-square btn-ghost text-amber-50"
         >
           {isNavOpen ? "" : <RxHamburgerMenu size={35} />}
         </button>
       </nav>
 
       {isNavOpen && (
-        <div className="fixed top-0 right-0 bottom-0 bg-slate-800 z-10 w-full md:w-80 opacity-95">
+        <div className="fixed top-0 right-0 bottom-0 bg-slate-800 z-20 w-full md:w-80 opacity-95">
           <ul className="flex flex-col gap-10 my-8 items-center text-amber-50">
             <button
               onClick={() => setIsNavOpen(!isNavOpen)}
-              className="btn btn-square btn-ghost text-amber-500"
+              className="btn btn-square btn-ghost text-amber-50"
             >
               <IoCloseSharp size={50} />
             </button>
