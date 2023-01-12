@@ -7,10 +7,10 @@ export default function Hero() {
     <div className="w-full h-[75vh] relative">
       <div className="-z-10">
         <Image
-          className="object-cover object-center brightness-50"
+          className="object-cover object-center brightness-75"
           fill
           priority
-          src="/HeroBackground.jpg"
+          src="/hero-bg.jpg"
           alt="a group of friends watching a movie"
         />
       </div>
