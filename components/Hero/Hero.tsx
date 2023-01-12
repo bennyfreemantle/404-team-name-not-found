@@ -4,7 +4,7 @@ import CTAButton from "../CTAButton/CTAButton";
 
 export default function Hero() {
   return (
-    <div className="w-full h-[75vh] relative">
+    <div className="w-full h-[60vh] relative">
       <div className="-z-10">
         <Image
           className="object-cover object-center brightness-75"
