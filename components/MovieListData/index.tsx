@@ -144,23 +144,23 @@ export const movies = [
     vote_average: 7.4,
     vote_count: 18609,
   },
-  {
-    adult: false,
-    backdrop_path:
-      "https://image.tmdb.org/t/p/w500/eNI7PtK6DEYgZmHWP9gQNuff8pv.jpg",
-    genre_ids: [878, 28, 12],
-    id: 624860,
-    original_language: "en",
-    original_title: "The Matrix Resurrections",
-    description:
-      "Plagued by strange memories, Neo's life takes an unexpected turn when he finds himself back inside the Matrix.",
-    popularity: 424.792,
-    poster_path:
-      "https://image.tmdb.org/t/p/w500/8c4a8kE7PizaGQQnditMmI1xbRp.jpg",
-    release_date: "2021-12-16",
-    title: "The Matrix Resurrections",
-    video: false,
-    vote_average: 6.7,
-    vote_count: 3712,
-  },
+  // {
+  //   adult: false,
+  //   backdrop_path:
+  //     "https://image.tmdb.org/t/p/w500/eNI7PtK6DEYgZmHWP9gQNuff8pv.jpg",
+  //   genre_ids: [878, 28, 12],
+  //   id: 624860,
+  //   original_language: "en",
+  //   original_title: "The Matrix Resurrections",
+  //   description:
+  //     "Plagued by strange memories, Neo's life takes an unexpected turn when he finds himself back inside the Matrix.",
+  //   popularity: 424.792,
+  //   poster_path:
+  //     "https://image.tmdb.org/t/p/w500/8c4a8kE7PizaGQQnditMmI1xbRp.jpg",
+  //   release_date: "2021-12-16",
+  //   title: "The Matrix Resurrections",
+  //   video: false,
+  //   vote_average: 6.7,
+  //   vote_count: 3712,
+  // },
 ];
