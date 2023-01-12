@@ -4,11 +4,13 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Hero from "../components/Hero/Hero";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import Carousel from "../components/Carousel/Carousel";
 
+const movies = [{ name: "hehe" }, { name: "ehehe" }];
 export default function Home() {
   const session = useSession();
   return (
-    <div className="bg-slate-800">
+    <div className="bg-slate-900">
       <div className="flex flex-col container mx-auto my-0 p-3">
         <Head>
           <title>CineMate</title>
@@ -19,12 +21,17 @@ export default function Home() {
         <Header />
       </div>
       <Hero />
-      <div className="flex flex-col min-h-screen container mx-auto my-0 p-3">
-        <main className="flex-1 text-amber-50">
-          <p>This is the rest of the main content</p>
-          {session && <p>User logged in {session.user.email}</p>}
-        </main>
+
+      <Carousel />
+      <div className="bg-slate-800">
+        <div className="flex flex-col min-h-screen container mx-auto my-0 p-3">
+          <main className="flex-1 text-amber-50">
+            <p>This is the rest of the main content</p>
+            {session && <p>User logged in {session.user.email}</p>}
+          </main>
+        </div>
       </div>
+
       <Footer />
     </div>
   );
