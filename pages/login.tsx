@@ -10,7 +10,7 @@ export default function Login() {
   const supabase = useSupabaseClient();
 
   return (
-    <div className="bg-slate-800">
+    <div className="bg-slate-900">
       <div className="flex flex-col container mx-auto my-0 p-3">
         <Head>
           <title>CineMate</title>
@@ -20,22 +20,24 @@ export default function Login() {
         </Head>
         <Header disableButton={true} />
       </div>
-      <div className="flex flex-col min-h-screen container mx-auto my-0 p-3">
-        <main className="flex-1 text-amber-50">
-          {!session ? (
-            <Auth
-              supabaseClient={supabase}
-              appearance={{ theme: ThemeSupa }}
-              theme="dark"
-              magicLink
-              redirectTo="/"
-            />
-          ) : (
-            <p>User logged in {session.user.email}</p>
-          )}
-        </main>
-        <Footer />
+      <div className="bg-slate-700">
+        <div className="flex flex-col min-h-screen container mx-auto my-0 p-3">
+          <main className="flex-1 text-amber-50">
+            {!session ? (
+              <Auth
+                supabaseClient={supabase}
+                appearance={{ theme: ThemeSupa }}
+                theme="dark"
+                magicLink
+                redirectTo="/"
+              />
+            ) : (
+              <p>User logged in {session.user.email}</p>
+            )}
+          </main>
+        </div>
       </div>
+      <Footer />
     </div>
   );
 }

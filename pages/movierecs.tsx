@@ -10,7 +10,7 @@ import { movies } from "../components/MovieListData/index";
 
 export default function MovieRecs() {
   return (
-    <div className="bg-slate-700">
+    <div className="bg-slate-900">
       <div className="flex flex-col container mx-auto my-0 p-3">
         <Head>
           <title>CineMate</title>
@@ -21,10 +21,14 @@ export default function MovieRecs() {
         <Header />
       </div>
 
-      <div className="flex flex-col min-h-screen container mx-auto my-0 p-3 ">
-        <h2 className="text-amber-50 text-2xl py-5">Your Recommended Movies</h2>
-        <div className=" flex flex-wrap">
-          <MovieCard />
+      <div className="bg-slate-700">
+        <div className="flex flex-col min-h-screen container mx-auto my-0 p-3">
+          <h2 className="text-amber-50 text-2xl py-5">
+            Your Recommended Movies
+          </h2>
+          <div className="flex flex-wrap">
+            <MovieCard />
+          </div>
         </div>
       </div>
       <Footer />
