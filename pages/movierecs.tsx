@@ -26,8 +26,8 @@ export default function MovieRecs() {
         <div className=" flex flex-wrap">
           <MovieCard />
         </div>
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 }
