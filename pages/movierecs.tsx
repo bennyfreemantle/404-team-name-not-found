@@ -31,7 +31,6 @@ export default function MovieRecs() {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
