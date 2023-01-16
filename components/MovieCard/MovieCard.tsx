@@ -10,7 +10,6 @@ export default function MovieCard() {
     async function List() {
       const response = await moviedb.moviePopular();
       setMovies(response.results);
-      console.log(response);
     }
     List();
   }, []);
@@ -32,6 +31,7 @@ export default function MovieCard() {
                 alt="bookmark icon"
                 width={40}
                 height={40}
+                style={{ width: "auto", height: "auto" }}
               />
               <div className="relative h-full">
                 <Image
@@ -40,6 +40,8 @@ export default function MovieCard() {
                   // height={280}
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   fill
+                  priority
+                  sizes="50vw"
                   alt="movie poster"
                 />
               </div>
