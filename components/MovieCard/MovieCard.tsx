@@ -25,10 +25,7 @@ export default function MovieCard() {
             href={`https://www.themoviedb.org/movie/${movie.id}`}
             rel="noreferrer"
           >
-            <div
-              className="relative flex flex-col w-80 drop-shadow-xl rounded-md overflow-hidden bg-amber-50 hover:opacity-70 hover:cursor-pointer"
-              key={movie.id}
-            >
+            <div className="relative h-[500px] flex flex-col w-44 drop-shadow-xl rounded-md overflow-hidden bg-amber-50 hover:opacity-70 hover:cursor-pointer md:w-56 xl:w-80">
               <Image
                 className="absolute z-10 left-0 top-0"
                 src="/bookmark.svg"
@@ -36,32 +33,25 @@ export default function MovieCard() {
                 width={40}
                 height={40}
               />
-              <div className="h-[500px] relative">
+              <div className="relative h-full">
                 <Image
-                  className="w-full relative object-cover object-center"
+                  className="w-full relative object-cover object-center aspect-square"
                   // width={200}
                   // height={280}
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   fill
                   alt="movie poster"
-                  key={movie.id}
                 />
               </div>
 
-              <p
-                className="flex-1 flex items-center justify-center text-slate-700 pl-2 text-xl text-center py-4"
-                key={movie.id}
-              >
+              <p className="flex-1 flex items-center justify-center text-slate-700 text-lg text-center p-2">
                 {movie.title}
               </p>
-              <div className="flex items-center gap-2 bg-slate-800 w-full py-2">
-                <p
-                  className="text-amber-50 font-bold pl-7 text-xl"
-                  key={movie.id}
-                >
+              <div className="flex items-center gap-2 bg-slate-800 w-full p-2">
+                <p className="text-amber-50 font-bold text-sm">
                   ⭐{movie.vote_average}
                 </p>
-                <p className="text-amber-50  text-l italic pr-5">
+                <p className="text-amber-50  text-sm italic md:text-lg">
                   Recommended by Ben!👍
                 </p>
               </div>
