@@ -1,28 +1,28 @@
-import RecButton from "../RecButton/RecButton";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { movies } from "../MovieListData/index";
+import moviedb from "../../utils/moviedbclient";
+import { MovieResult } from "moviedb-promise/dist/request-types";
 
-// movie data stored in MovieListData
-// pass the image src / title from this data into the card component
-//recommended by user - this data will come from our database eventually
 
-{
-  /* <div className="card">
-      <Image src={props.src} />
-      <Title title={props.name} />
-      <Paragraph description={props.description} />
-      <Button text="PLAY" id="playButton" />
-      <Button text="MY LIST" id="listButton" />
-    </div> */
-}
+
 
 export default function MovieCard() {
+  const [movies, setMovies] = useState<MovieResult[]>()
+  useEffect(
+    () => {
+      async function List() {
+        const response = await moviedb.moviePopular()
+        setMovies(response.results)
+      console.log(response)}
+    List()}
+    
+  ,[])
+
   return (
     <div className="w-full flex flex-wrap relative gap-y-8 gap-x-4 justify-evenly bg-slate-700 m-4">
-      {movies.map((item: any) => {
+      {movies?.map((movie: MovieResult) => {
         return (
-          <div className="relative drop-shadow-xl rounded-md overflow-hidden bg-amber-50" key={item.id}>
+          <div className="relative drop-shadow-xl rounded-md overflow-hidden bg-amber-50" key={movie.id}>
             <Image
               className="absolute z-10 left-0 top-0"
               src="/bookmark.svg"
@@ -35,25 +35,25 @@ export default function MovieCard() {
               className="w-full relative object-cover object-center"
               // width={200}
               // height={280}
-              src={item.poster_path}
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               fill
               alt="movie poster"
-              key={item.id}
+              key={movie.id}
             />
             </div>
 
             <p
               className="text-slate-700 pl-2 text-xl text-center py-4"
-              key={item.id}
+              key={movie.id}
             >
-              {item.title}
+              {movie.title}
             </p>
             <div className="inline-block space-x-2 bg-slate-800 w-full py-2">
               <p
                 className="text-amber-50  inline-block font-bold pl-7 text-xl"
-                key={item.id}
+                key={movie.id}
               >
-                ⭐{item.vote_average}
+                ⭐{movie.vote_average}
               </p>
               <p className="text-amber-50  inline-block text-l italic pr-5">
                 Recommended by Ben!👍
@@ -66,7 +66,3 @@ export default function MovieCard() {
   );
 }
 
-//change Navbar and footer to darker colour- on a different branch
-//add padding around text✔️
-//add data map
-//make card bigger✔️
