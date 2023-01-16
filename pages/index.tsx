@@ -5,6 +5,7 @@ import Header from "../components/Header/Header";
 import Hero from "../components/Hero/Hero";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Carousel from "../components/Carousel/Carousel";
+import Subscription from "../components/Subscription/subscription";
 
 const movies = [{ name: "hehe" }, { name: "ehehe" }];
 export default function Home() {
@@ -30,6 +31,11 @@ export default function Home() {
             {session && <p>User logged in {session.user.email}</p>}
           </main>
         </div>
+      <Subscription />
+      <div className="flex flex-col min-h-screen container mx-auto my-0 p-3">
+        <main className="flex-1 text-amber-50">
+          {session && <p>User logged in {session.user.email}</p>}
+        </main>
       </div>
 
       <Footer />
