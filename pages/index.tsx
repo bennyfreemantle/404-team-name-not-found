@@ -4,6 +4,7 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Hero from "../components/Hero/Hero";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import Subscription from "../components/Subscription/subscription";
 
 export default function Home() {
   const session = useSession();
@@ -19,9 +20,9 @@ export default function Home() {
         <Header />
       </div>
       <Hero />
+      <Subscription />
       <div className="flex flex-col min-h-screen container mx-auto my-0 p-3">
         <main className="flex-1 text-amber-50">
-          <p>This is the rest of the main content</p>
           {session && <p>User logged in {session.user.email}</p>}
         </main>
       </div>
