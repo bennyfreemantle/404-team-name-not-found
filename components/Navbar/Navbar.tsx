@@ -26,7 +26,7 @@ export default function Navbar() {
             >
               <IoCloseSharp size={50} />
             </button>
-            <Link href="/" onClick={() => setIsNavOpen(false)}>
+            <Link href="/profile" onClick={() => setIsNavOpen(false)}>
               <li className="text-2xl">My Account</li>
             </Link>
             <Link href="/" onClick={() => setIsNavOpen(false)}>
@@ -35,7 +35,7 @@ export default function Navbar() {
             <Link href="/" onClick={() => setIsNavOpen(false)}>
               <li className="text-2xl">Top 100 List</li>
             </Link>
-            <Link href="/" onClick={() => setIsNavOpen(false)}>
+            <Link href="/movierecs" onClick={() => setIsNavOpen(false)}>
               <li className="text-2xl">Your Movie List</li>
             </Link>
             <Link href="/" onClick={() => setIsNavOpen(false)}>
