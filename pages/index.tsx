@@ -3,7 +3,7 @@ import Image from "next/image";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Hero from "../components/Hero/Hero";
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSession } from "@supabase/auth-helpers-react";
 import CarouselContainer from "../components/CarouselContainer/CarouselContainer";
 
 const movies = [{ name: "hehe" }, { name: "ehehe" }];

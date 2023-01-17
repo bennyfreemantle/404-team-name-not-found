@@ -1,12 +1,12 @@
 import React from "react";
 import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import Head from "next/head";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 
 export default function Login() {
-  const session = useSession();
+  const user = useUser();
   const supabase = useSupabaseClient();
 
   return (
@@ -23,16 +23,16 @@ export default function Login() {
       <div className="bg-slate-700">
         <div className="flex flex-col min-h-screen container mx-auto my-0 p-3">
           <main className="flex-1 text-amber-50">
-            {!session ? (
+            {!user ? (
               <Auth
                 supabaseClient={supabase}
                 appearance={{ theme: ThemeSupa }}
                 theme="dark"
                 magicLink
-                redirectTo="/"
+                redirectTo="http://localhost:3000/"
               />
             ) : (
-              <p>User logged in {session.user.email}</p>
+              <p>User logged in {user.email}</p>
             )}
           </main>
         </div>

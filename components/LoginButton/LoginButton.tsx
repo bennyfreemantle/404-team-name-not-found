@@ -1,13 +1,16 @@
 import Link from "next/link";
 import React from "react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/router";
 
 export default function LoginButton() {
   const session = useSession();
   const supabase = useSupabaseClient();
+  const router = useRouter();
 
   function logout() {
     supabase.auth.signOut();
+    router.push("/");
   }
 
   return (

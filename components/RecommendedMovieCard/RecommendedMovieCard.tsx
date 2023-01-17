@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Database } from "../../types/supabase";
 import {
   Session,
+  User,
   useSupabaseClient,
   useUser,
 } from "@supabase/auth-helpers-react";
@@ -10,20 +11,19 @@ import {
 type Movies = Database["public"]["Tables"]["movies"]["Row"];
 
 type RecommendedMovieCardProps = {
-  session: Session;
+  user: User;
 };
 
 export default function RecommendedMovieCard({
-  session,
+  user,
 }: RecommendedMovieCardProps) {
   const supabase = useSupabaseClient<Database>();
-  const user = useUser();
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState<Movies[]>([]);
 
   useEffect(() => {
     getMovies();
-  }, [session]);
+  }, [user]);
 
   async function getMovies() {
     try {
