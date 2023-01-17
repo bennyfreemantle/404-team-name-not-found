@@ -7,9 +7,9 @@ import Link from "next/link";
 
 export default function AllMoviesCard() {
   const [movies, setMovies] = useState<MovieResult[]>();
-  let count = 1;
+
   
-  const [page, setPage] = useState<PopularMoviesRequest>({page: count})
+  const [page, setPage] = useState<PopularMoviesRequest>()
   useEffect(() => {
     async function List() {
       const response = await moviedb.moviePopular(page);
@@ -57,7 +57,7 @@ export default function AllMoviesCard() {
       ))}
       <div>
         <button>Previous</button>
-        <button onClick={() => setPage({page: count+1})}>Next</button>
+        <button onClick={() => setPage({...page, page: page+1})}>Next</button>
         
       </div>
       
