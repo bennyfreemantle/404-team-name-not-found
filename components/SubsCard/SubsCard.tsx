@@ -17,7 +17,7 @@ export default function SubsCard({ title, price, detail, className, onClick }: S
     <div onClick={onClick} className={`m-2 w-80 h-96 bg-slate-900 text-white p-8 rounded-lg ${className}`}>
       <div >
         {/* need to position radio button closer to top corner */}
-        <input checked type="radio" name="subscription" className="absolute"></input>
+        <input type="radio" name="subscription" className="absolute"></input>
         <h1 className="text-3xl text-center">{title}</h1>
         {/* per month text needs to be smaller than price */}
         <h2 className="text-2xl text-center">{price}/month</h2>
