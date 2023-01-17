@@ -1,14 +1,12 @@
+import { useSession } from "@supabase/auth-helpers-react";
 import Head from "next/head";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import MovieCard from "../components/MovieCard/MovieCard";
-import { movies } from "../components/MovieListData/index";
-
-//search bar
-//heading
-//movie cards - component
 
 export default function MovieRecs() {
+  const session = useSession();
+
   return (
     <div className="bg-slate-900">
       <div className="flex flex-col container mx-auto my-0 p-3">
@@ -27,7 +25,7 @@ export default function MovieRecs() {
             Your Recommended Movies
           </h2>
           <div className="flex flex-wrap">
-            <MovieCard />
+            {session ? <MovieCard session={session} /> : null}
           </div>
         </div>
       </div>

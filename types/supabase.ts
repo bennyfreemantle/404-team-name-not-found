@@ -11,48 +11,45 @@ export interface Database {
     Tables: {
       movies: {
         Row: {
-          id: number
+          id: string
           image_url: string | null
           movie_id: number | null
           title: string | null
+          user_id: string | null
         }
         Insert: {
-          id?: number
+          id: string
           image_url?: string | null
           movie_id?: number | null
           title?: string | null
+          user_id?: string | null
         }
         Update: {
-          id?: number
+          id?: string
           image_url?: string | null
           movie_id?: number | null
           title?: string | null
+          user_id?: string | null
         }
       }
       profiles: {
         Row: {
-          avatar_url: string | null
-          full_name: string | null
+          favourite_movies: number[] | null
           id: string
           updated_at: string | null
           username: string | null
-          website: string | null
         }
         Insert: {
-          avatar_url?: string | null
-          full_name?: string | null
+          favourite_movies?: number[] | null
           id: string
           updated_at?: string | null
           username?: string | null
-          website?: string | null
         }
         Update: {
-          avatar_url?: string | null
-          full_name?: string | null
+          favourite_movies?: number[] | null
           id?: string
           updated_at?: string | null
           username?: string | null
-          website?: string | null
         }
       }
     }
