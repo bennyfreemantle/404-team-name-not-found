@@ -4,8 +4,6 @@ import Header from "../components/Header/Header";
 import AllMoviesCard from "../components/AllMoviesCard/AllMoviesCard";
 import { movies } from "../components/MovieListData/index";
 
-//movie card component needs to be different - no "recommended by" section
-// - create a new all movies card component and import here
 
 export default function MovieRecs() {
   return (
@@ -29,6 +27,7 @@ export default function MovieRecs() {
             <AllMoviesCard />
           </div>
         </div>
+       
       </div>
       <Footer />
     </div>

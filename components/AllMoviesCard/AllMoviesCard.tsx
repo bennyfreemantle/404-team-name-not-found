@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import moviedb from "../../utils/moviedbclient";
-import { MovieResult, PopularMoviesRequest } from "moviedb-promise/dist/request-types";
+import {
+  MovieResult,
+  PopularMoviesRequest,
+} from "moviedb-promise/dist/request-types";
 import Link from "next/link";
-
 
 export default function AllMoviesCard() {
   const [movies, setMovies] = useState<MovieResult[]>();
+  const [pageNumber, setPageNumber] = useState<PopularMoviesRequest>({ page: 1 });
 
-  
-  const [page, setPage] = useState<PopularMoviesRequest>()
+  function nextPage(pageNum: number){
+    setPageNumber({page: pageNum +1})
+  }
+
   useEffect(() => {
     async function List() {
-      const response = await moviedb.moviePopular(page);
+      const response = await moviedb.moviePopular(pageNumber);
       setMovies(response.results);
     }
     List();
-  }, );
-  
-   return (
+  });
+
+  return (
     <div className="w-full flex flex-wrap relative gap-y-8 gap-x-4 justify-evenly bg-slate-700 m-4">
       {movies?.map((movie: MovieResult) => (
         <a
@@ -52,15 +57,16 @@ export default function AllMoviesCard() {
               <p className="">{movie.title}</p>
               <p className="text-center">⭐{movie.vote_average}</p>
             </div>
+            <div>
+            </div>
           </div>
         </a>
       ))}
-      <div>
-        <button>Previous</button>
-        <button onClick={() => setPage({...page, page: page+1})}>Next</button>
-        
-      </div>
-      
+      <button>Previous</button>
+              <button onClick={() => nextPage(pageNumber.page || 1)}>
+                Next
+              </button>
     </div>
+    
   );
 }
