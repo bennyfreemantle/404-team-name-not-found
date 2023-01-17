@@ -40,7 +40,7 @@ export default function Subscription() {
   return (
     <>
       <div>
-        <p className="text-white text-center">SUBSCRIPTION</p>
+        <p className="text-white text-center text-4xl my-8">SUBSCRIPTION</p>
         <div className="flex gap-8 flex-col md:flex-row">
           <SubsCard
             onClick={() => setCheckedFree(!checkedFree)}

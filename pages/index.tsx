@@ -27,7 +27,7 @@ export default function Home() {
       <div className="bg-slate-800">
         
    
-      <div className="flex flex-col items-center min-h-screen container mx-auto my-0 p-3">
+      <div className="flex flex-col items-center  container mx-auto my-0 p-3">
       <Subscription />
       </div>
       </div>
