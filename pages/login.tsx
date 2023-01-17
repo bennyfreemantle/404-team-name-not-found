@@ -4,10 +4,16 @@ import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import Head from "next/head";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
+import { useRouter } from "next/router";
 
 export default function Login() {
   const user = useUser();
   const supabase = useSupabaseClient();
+  const router = useRouter();
+
+  if (user) {
+    router.push("/");
+  }
 
   return (
     <div className="bg-slate-900">

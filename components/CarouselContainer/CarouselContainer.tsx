@@ -39,7 +39,7 @@ export function CarouselContainer() {
   return (
     <div className="m-4">
       <h1 className="mb-4 text-amber-50 text-3xl p-4">Top Rated Movies</h1>
-      <Carousel responsive={responsive}>
+      <Carousel responsive={responsive} infinite={true} autoPlaySpeed={1000}>
         {movies ? (
           movies.map((movie) => {
             return (
