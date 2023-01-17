@@ -4,6 +4,9 @@ import moviedb from "../../utils/moviedbclient";
 import { MovieResult } from "moviedb-promise/dist/request-types";
 import Link from "next/link";
 
+//function should fetch first page of movies
+//"more movies" button at bottom of page to fetch next page
+
 export default function MovieCard() {
   const [movies, setMovies] = useState<MovieResult[]>();
   useEffect(() => {
