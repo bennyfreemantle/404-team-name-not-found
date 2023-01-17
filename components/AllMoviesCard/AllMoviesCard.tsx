@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import moviedb from "../../utils/moviedbclient";
-import { MovieResult } from "moviedb-promise/dist/request-types";
+import { MovieResult, PopularMoviesRequest } from "moviedb-promise/dist/request-types";
 import Link from "next/link";
+
 
 export default function AllMoviesCard() {
   const [movies, setMovies] = useState<MovieResult[]>();
+  let count = 1;
+  
+  const [page, setPage] = useState<PopularMoviesRequest>({page: count})
   useEffect(() => {
     async function List() {
-      const response = await moviedb.moviePopular();
+      const response = await moviedb.moviePopular(page);
       setMovies(response.results);
     }
     List();
-  }, []);
-
-  return (
+  }, );
+  
+   return (
     <div className="w-full flex flex-wrap relative gap-y-8 gap-x-4 justify-evenly bg-slate-700 m-4">
       {movies?.map((movie: MovieResult) => (
         <a
@@ -51,6 +55,12 @@ export default function AllMoviesCard() {
           </div>
         </a>
       ))}
+      <div>
+        <button>Previous</button>
+        <button onClick={() => setPage({page: count+1})}>Next</button>
+        
+      </div>
+      
     </div>
   );
 }
