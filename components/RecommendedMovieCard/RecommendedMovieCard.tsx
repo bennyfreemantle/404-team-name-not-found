@@ -9,11 +9,13 @@ import {
 
 type Movies = Database["public"]["Tables"]["movies"]["Row"];
 
-type MovieCardProps = {
+type RecommendedMovieCardProps = {
   session: Session;
 };
 
-export default function MovieCard({ session }: MovieCardProps) {
+export default function RecommendedMovieCard({
+  session,
+}: RecommendedMovieCardProps) {
   const supabase = useSupabaseClient<Database>();
   const user = useUser();
   const [loading, setLoading] = useState(true);
@@ -31,7 +33,7 @@ export default function MovieCard({ session }: MovieCardProps) {
         data: movies,
         error,
         status,
-      } = await supabase.from("movies").select().eq("user_id", user?.id);
+      } = await supabase.from("movies").select("*").eq("user_id", user?.id);
 
       if (error && status !== 406) {
         throw error;
@@ -61,19 +63,9 @@ export default function MovieCard({ session }: MovieCardProps) {
             rel="noreferrer"
           >
             <div className="relative h-[500px] flex flex-col w-44 drop-shadow-xl rounded-md overflow-hidden bg-amber-50 hover:opacity-70 hover:cursor-pointer md:w-56 xl:w-80">
-              <Image
-                className="absolute z-10 left-0 top-0"
-                src="/bookmark.svg"
-                alt="bookmark icon"
-                width={40}
-                height={40}
-                style={{ width: "auto", height: "auto" }}
-              />
               <div className="relative h-full">
                 <Image
                   className="w-full relative object-cover object-center aspect-square"
-                  // width={200}
-                  // height={280}
                   src={`https://image.tmdb.org/t/p/w500${movie.image_url}`}
                   fill
                   priority
@@ -85,14 +77,6 @@ export default function MovieCard({ session }: MovieCardProps) {
               <p className="flex-1 flex items-center justify-center text-slate-700 text-lg text-center p-2">
                 {movie.title}
               </p>
-              {/* <div className="flex items-center gap-2 bg-slate-800 w-full p-2">
-                <p className="text-amber-50 font-bold text-sm">
-                  ⭐{movie.vote_average}
-                </p>
-                <p className="text-amber-50  text-sm italic md:text-lg">
-                  Recommended by Ben!👍
-                </p>
-              </div> */}
             </div>
           </a>
         );

@@ -45,6 +45,7 @@ export default function AccountProfile({ session }: AccountProfileProps) {
 
       if (profile) {
         setUsername(profile.username);
+        console.log(user);
       }
     } catch (error) {
       alert("Error loading user data!");
@@ -97,7 +98,10 @@ export default function AccountProfile({ session }: AccountProfileProps) {
           {loading ? (
             <p>Loading...</p>
           ) : (
-            <form className="flex flex-col gap-4 md:w-1/2">
+            <form
+              onSubmit={() => updateProfile({ username })}
+              className="flex flex-col gap-4 md:w-1/2"
+            >
               <div className="flex flex-col md:flex-row md:justify-between">
                 <label>Your Username:</label>
                 <input
@@ -107,10 +111,7 @@ export default function AccountProfile({ session }: AccountProfileProps) {
                   onChange={(e) => setUsername(e.target.value)}
                 ></input>
               </div>
-              <button
-                onClick={() => updateProfile({ username })}
-                className="rounded-xl bg-red-400 text-amber-50 p-1 text-lg md:w-32"
-              >
+              <button className="rounded-xl bg-red-400 text-amber-50 p-1 text-lg md:w-32">
                 Save
               </button>
             </form>

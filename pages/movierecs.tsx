@@ -1,11 +1,26 @@
-import { useSession } from "@supabase/auth-helpers-react";
+import {
+  useSession,
+  useSupabaseClient,
+  useUser,
+} from "@supabase/auth-helpers-react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
-import MovieCard from "../components/MovieCard/MovieCard";
+import RecommendedMovieCard from "../components/RecommendedMovieCard/RecommendedMovieCard";
+import { useEffect } from "react";
 
 export default function MovieRecs() {
   const session = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!session) {
+      router.push("/login");
+    } else {
+      router.push("/movierecs");
+    }
+  });
 
   return (
     <div className="bg-slate-900">
@@ -25,7 +40,7 @@ export default function MovieRecs() {
             Your Recommended Movies
           </h2>
           <div className="flex flex-wrap">
-            {session ? <MovieCard session={session} /> : null}
+            {session ? <RecommendedMovieCard session={session} /> : null}
           </div>
         </div>
       </div>
