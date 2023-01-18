@@ -8,15 +8,17 @@ SearchMovieRequest,
 } from "moviedb-promise/dist/request-types";
 import useDebounce from "../../hooks/useDebounce";
 import Link from "next/link";
-import { title } from "process";
-
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import { Database } from "../../types/supabase";
 
 export default function AllMoviesCard({pageNumber} : any) {
+  const user = useUser();
+  const supabase = useSupabaseClient<Database>();
   const [movies, setMovies] = useState<MovieResult[]>()
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [isSearching, setIsSearching] = useState<boolean>(false);
-
   const debouncedSearchTerm = useDebounce<any>(searchTerm, 500);
+
 
   useEffect(
     () => {
@@ -37,12 +39,35 @@ useEffect(() => {
   async function List() {
     const response = await moviedb.moviePopular(pageNumber);
     setMovies(response.results);
+    
   }
   if (!searchTerm) {
   List()
  }
 });
 
+  async function handleClick(movie: MovieResult) {
+    if (!user) return;
+    try {
+      const { data: movieData, error, status } = await supabase
+        .from("movies")
+        .insert([
+          {
+            movie_id: movie.id,
+            title: movie.title,
+            image_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+            user_id: user.id,
+          },
+        ]);
+        if(error && status !== 406){
+          throw error
+        }
+      console.log(movieData);
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(movie);
+  }
   
   async function searchCharacters(search: SearchMovieRequest) {
     const response = await moviedb.searchMovie(search);
