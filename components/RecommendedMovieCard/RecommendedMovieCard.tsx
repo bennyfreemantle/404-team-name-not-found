@@ -24,7 +24,7 @@ export default function RecommendedMovieCard({
 
   useEffect(() => {
     getMovies();
-  }, [user, handleDelete]);
+  }, [user]);
 
   async function getMovies() {
     try {
@@ -67,6 +67,7 @@ export default function RecommendedMovieCard({
       console.log(error);
     }
     console.log(movie);
+    getMovies();
   }
 
   // TODO : Generate and save the base url for the card link /tv or /movie
