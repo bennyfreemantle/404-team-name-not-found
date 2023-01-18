@@ -1,4 +1,4 @@
-export type Json =
+npmexport type Json =
   | string
   | number
   | boolean
