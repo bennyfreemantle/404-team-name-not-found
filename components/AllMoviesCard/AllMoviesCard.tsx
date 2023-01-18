@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import moviedb from "../../utils/moviedbclient";
 import {
-  MovieResult,
-  PopularMoviesRequest,
+MovieResult,
+PopularMoviesRequest,
 } from "moviedb-promise/dist/request-types";
 import Link from "next/link";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
@@ -42,15 +42,15 @@ export default function AllMoviesCard() {
       console.log(error);
     }
     console.log(movie);
-  }
 
-  useEffect(() => {
-    async function List() {
-      const response = await moviedb.moviePopular(pageNumber);
-      setMovies(response.results);
-    }
-    List();
-  });
+useEffect(() => {
+  async function List() {
+    const response = await moviedb.moviePopular(pageNumber);
+    setMovies(response.results);
+
+  }
+  List();
+});
 
   return (
     <div className="w-full flex flex-wrap relative gap-y-8 gap-x-4 justify-evenly bg-slate-700 m-4">
