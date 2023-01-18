@@ -6,6 +6,7 @@ MovieResult,
 PopularMoviesRequest,
 } from "moviedb-promise/dist/request-types";
 import Link from "next/link";
+import { title } from "process";
 
 export default function AllMoviesCard({pageNumber} : any) {
 const [movies, setMovies] = useState<MovieResult[]>();
@@ -17,7 +18,22 @@ useEffect(() => {
   }
   List();
 });
+  
+  let val = ''
+  function handleInput(e) {
+   
+    val = e.target.value;
+    console.log(val)
+}
 
+  function handleSearch(e) {
+     e.preventDefault();
+    async function searchList(title) {
+    const response = await moviedb.searchMovie(title);
+    return setMovies(response.results);
+    }
+    searchList(val)
+  }
 
 
 return (
