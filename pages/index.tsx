@@ -7,7 +7,6 @@ import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Subscription from "../components/Subscription/Subscription";
 import CarouselContainer from "../components/CarouselContainer/CarouselContainer";
 
-const movies = [{ name: "hehe" }, { name: "ehehe" }];
 export default function Home() {
   const session = useSession();
   return (
@@ -25,8 +24,6 @@ export default function Home() {
 
       <CarouselContainer />
       <div className="bg-slate-800">
-        
-   
       <div className="flex flex-col items-center  container mx-auto my-0 p-3">
       <Subscription />
       </div>

@@ -1,14 +1,49 @@
+import {
+  useSession,
+  useSupabaseClient,
+  useUser,
+} from "@supabase/auth-helpers-react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
-import MovieCard from "../components/MovieCard/MovieCard";
-import { movies } from "../components/MovieListData/index";
+import RecommendedMovieCard from "../components/RecommendedMovieCard/RecommendedMovieCard";
+import { useEffect, useLayoutEffect } from "react";
+import { GetServerSidePropsContext } from "next";
+import {
+  User,
+  createServerSupabaseClient,
+} from "@supabase/auth-helpers-nextjs";
 
-//search bar
-//heading
-//movie cards - component
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  // Create authenticated Supabase Client
+  const supabase = createServerSupabaseClient(ctx);
+  // Check if we have a session
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
-export default function MovieRecs() {
+  if (!session)
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+
+  // Run queries with RLS on the server
+  const { data } = await supabase.from("users").select("*");
+
+  return {
+    props: {
+      initialSession: session,
+      user: session.user,
+      data: data ?? [],
+    },
+  };
+};
+
+export default function MovieRecs({ user }: { user: User }) {
   return (
     <div className="bg-slate-900">
       <div className="flex flex-col container mx-auto my-0 p-3">
@@ -27,7 +62,7 @@ export default function MovieRecs() {
             Your Recommended Movies
           </h2>
           <div className="flex flex-wrap">
-            <MovieCard />
+            {user ? <RecommendedMovieCard user={user} /> : null}
           </div>
         </div>
       </div>
