@@ -18,7 +18,7 @@ export interface Database {
           user_id: string | null
         }
         Insert: {
-          id: string
+          id?: string
           image_url?: string | null
           movie_id?: number | null
           title?: string | null
@@ -34,19 +34,16 @@ export interface Database {
       }
       profiles: {
         Row: {
-          favourite_movies: number[] | null
           id: string
           updated_at: string | null
           username: string | null
         }
         Insert: {
-          favourite_movies?: number[] | null
           id: string
           updated_at?: string | null
           username?: string | null
         }
         Update: {
-          favourite_movies?: number[] | null
           id?: string
           updated_at?: string | null
           username?: string | null

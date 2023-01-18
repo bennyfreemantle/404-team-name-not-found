@@ -6,13 +6,28 @@ import {
   PopularMoviesRequest,
 } from "moviedb-promise/dist/request-types";
 import Link from "next/link";
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import { Database } from "../../types/supabase";
 
 export default function AllMoviesCard() {
+  const user = useUser();
+  const supabase = useSupabaseClient<Database>();
   const [movies, setMovies] = useState<MovieResult[]>();
-  const [pageNumber, setPageNumber] = useState<PopularMoviesRequest>({ page: 1 });
+  const [pageNumber, setPageNumber] = useState<PopularMoviesRequest>({
+    page: 1,
+  });
 
-  function nextPage(pageNum: number){
-    setPageNumber({page: pageNum +1})
+  function nextPage(pageNum: number) {
+    setPageNumber({ page: pageNum + 1 });
+  }
+
+  async function handleClick(movie: MovieResult) {
+    const { data, error } = await supabase
+  .from('movies')
+  .insert([
+    { movie_id: movie.id, title: movie.title, image_url: movie.poster_path, user_id: user?.id},
+  ])
+    console.log(movie);
   }
 
   useEffect(() => {
@@ -34,6 +49,7 @@ export default function AllMoviesCard() {
         >
           <div className="relative h-[500px] flex flex-col w-44 drop-shadow-xl rounded-md overflow-hidden bg-amber-50 hover:opacity-70 hover:cursor-pointer md:w-56 xl:w-80">
             <Image
+              onClick={() => handleClick(movie)}
               className="absolute z-10 left-0 top-0"
               src="/bookmark.svg"
               alt="bookmark icon"
@@ -57,16 +73,12 @@ export default function AllMoviesCard() {
               <p className="">{movie.title}</p>
               <p className="text-center">⭐{movie.vote_average}</p>
             </div>
-            <div>
-            </div>
+            <div></div>
           </div>
         </a>
       ))}
       <button>Previous</button>
-              <button onClick={() => nextPage(pageNumber.page || 1)}>
-                Next
-              </button>
+      <button onClick={() => nextPage(pageNumber.page || 1)}>Next</button>
     </div>
-    
   );
 }
