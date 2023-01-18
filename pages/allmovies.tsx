@@ -40,16 +40,19 @@ export default function MovieRecs() {
 
       <div className="bg-slate-700">
         <div className="flex flex-col min-h-screen container mx-auto my-0 p-3">
+          <p className="text-md text-amber-50 opacity-30">Page {pageNumber.page}</p>
           <h2 className="text-amber-50 text-2xl py-5">All Movies</h2>
           <div className="flex flex-wrap">
             <AllMoviesCard pageNumber={pageNumber} />
           </div>
-
-          <button onClick={() => previousPage(pageNumber.page || 1)}>
+          <div className="flex gap-4 justify-center py-8">
+          <button className="bg-transparent hover:bg-red-400 text-amber-50 font-semibold hover:text-white py-2 px-4 border border-amber-50 hover:border-transparent rounded w-40" onClick={() => previousPage(pageNumber.page || 1)}>
             Previous
-          </button>
+            </button>
+            <p className="text-3xl text-amber-50 justify-auto pt-0.5">{pageNumber.page}</p>
 
-          <button onClick={() => nextPage(pageNumber.page || 1)}>Next</button>
+          <button className="bg-transparent hover:bg-red-400 text-amber-50 font-semibold hover:text-white py-2 px-4 border border-amber-50 hover:border-transparent rounded w-40" onClick={() => nextPage(pageNumber.page || 1)}>Next</button>
+          </div>
         </div>
       </div>
       <Footer />
