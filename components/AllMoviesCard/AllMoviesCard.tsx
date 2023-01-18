@@ -22,11 +22,25 @@ export default function AllMoviesCard() {
   }
 
   async function handleClick(movie: MovieResult) {
-    const { data, error } = await supabase
-  .from('movies')
-  .insert([
-    { movie_id: movie.id, title: movie.title, image_url: movie.poster_path, user_id: user?.id},
-  ])
+    if (!user) return;
+    try {
+      const { data: movieData, error, status } = await supabase
+        .from("movies")
+        .insert([
+          {
+            movie_id: movie.id,
+            title: movie.title,
+            image_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+            user_id: user.id,
+          },
+        ]);
+        if(error && status !== 406){
+          throw error
+        }
+      console.log(movieData);
+    } catch (error) {
+      console.log(error);
+    }
     console.log(movie);
   }
 
