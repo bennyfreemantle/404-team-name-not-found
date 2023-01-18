@@ -110,7 +110,7 @@ export default function RecommendedMovieCard({
                 alt="movie poster"
               />
             </div>
-
+            
             <p className="flex-1 flex items-center justify-center text-slate-700 text-lg text-center p-2">
               {movie.title}
             </p>

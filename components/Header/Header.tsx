@@ -9,7 +9,7 @@ export default function Header({
   disableButton?: boolean;
 }) {
   return (
-    <header className="flex h-20 navbar bg-base-100">
+    <header className="flex h-20 navbar bg-base-100 ">
       <Logo />
       <span className="flex-1"></span>
       <div className="flex items-center gap-5">
