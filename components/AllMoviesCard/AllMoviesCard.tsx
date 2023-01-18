@@ -4,24 +4,57 @@ import moviedb from "../../utils/moviedbclient";
 import {
 MovieResult,
 PopularMoviesRequest,
+SearchMovieRequest,
 } from "moviedb-promise/dist/request-types";
+import useDebounce from "../../hooks/useDebounce";
 import Link from "next/link";
+import { title } from "process";
+
 
 export default function AllMoviesCard({pageNumber} : any) {
-const [movies, setMovies] = useState<MovieResult[]>();
+  const [movies, setMovies] = useState<MovieResult[]>()
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [isSearching, setIsSearching] = useState<boolean>(false);
 
+  const debouncedSearchTerm = useDebounce<any>(searchTerm, 500);
+
+  useEffect(
+    () => {
+      if (debouncedSearchTerm) {
+        setIsSearching(true);
+        searchCharacters(debouncedSearchTerm).then((results) => {
+          setIsSearching(false);
+          setMovies(results);
+        });
+      } else {
+        setMovies([]);
+      }
+    },
+    [debouncedSearchTerm] // Only call effect if debounced search term changes
+  );
+  
 useEffect(() => {
   async function List() {
     const response = await moviedb.moviePopular(pageNumber);
     setMovies(response.results);
   }
-  List();
+  if (!searchTerm) {
+  List()
+ }
 });
 
-
+  
+  async function searchCharacters(search: SearchMovieRequest) {
+    const response = await moviedb.searchMovie(search);
+    return response.results;
+    // console.log(response)
+  }
+  
+// debounce
 
 return (
   <div className="w-full flex flex-wrap relative gap-y-8 gap-x-4 justify-evenly bg-slate-700 m-4">
+    <input type="text" onChange={(e)=>setSearchTerm(e.target.value)} />
     {movies?.map((movie: MovieResult) => (
       <a
         key={movie.id}
