@@ -3,9 +3,20 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import AllMoviesCard from "../components/AllMoviesCard/AllMoviesCard";
 import { movies } from "../components/MovieListData/index";
+import React, { useEffect, useState } from "react";
+import { PopularMoviesRequest} from "moviedb-promise/dist/request-types";
+import moviedb from "../utils/moviedbclient";
+
 
 
 export default function MovieRecs() {
+
+  const [pageNumber, setPageNumber] = useState<PopularMoviesRequest>({ page: 1 });
+
+  function nextPage(pageNum: number){
+    setPageNumber({page: pageNum +1})
+  }  
+  
   return (
     <div className="bg-slate-900">
       <div className="flex flex-col container mx-auto my-0 p-3">
@@ -23,9 +34,15 @@ export default function MovieRecs() {
           <h2 className="text-amber-50 text-2xl py-5">
             All Movies
           </h2>
-          <div className="flex flex-wrap">
-            <AllMoviesCard />
-          </div>
+        <div className="flex flex-wrap">
+            <AllMoviesCard pageNumber={pageNumber}/>
+        </div>
+          <button>
+             Previous
+          </button>
+          <button onClick={() => nextPage(pageNumber.page || 1)}>
+             Next
+          </button>
         </div>
        
       </div>
