@@ -55,13 +55,8 @@ export default function AllMoviesCard() {
   return (
     <div className="w-full flex flex-wrap relative gap-y-8 gap-x-4 justify-evenly bg-slate-700 m-4">
       {movies?.map((movie: MovieResult) => (
-        <a
-          key={movie.id}
-          target={"_blank"}
-          href={`https://www.themoviedb.org/movie/${movie.id}`}
-          rel="noreferrer"
-        >
-          <div className="relative h-[500px] flex flex-col w-44 drop-shadow-xl rounded-md overflow-hidden bg-amber-50 hover:opacity-70 hover:cursor-pointer md:w-56 xl:w-80">
+        
+          <div key={movie.id} className="relative h-[500px] flex flex-col w-44 drop-shadow-xl rounded-md overflow-hidden bg-amber-50 hover:opacity-70 hover:cursor-pointer md:w-56 xl:w-80">
             <Image
               onClick={() => handleClick(movie)}
               className="absolute z-10 left-0 top-0"
@@ -71,7 +66,12 @@ export default function AllMoviesCard() {
               height={40}
               style={{ width: "auto", height: "auto" }}
             />
-            <div className="relative h-full">
+            <a
+          target={"_blank"}
+          href={`https://www.themoviedb.org/movie/${movie.id}`}
+          rel="noreferrer"
+        >
+            <div className="relative h-full flex-1">
               <Image
                 className="w-full relative object-cover object-center aspect-square"
                 // width={200}
@@ -83,13 +83,13 @@ export default function AllMoviesCard() {
                 alt="movie poster"
               />
             </div>
-            <div className="flex flex-1 flex-col items-center justify-center text-slate-700 text-lg text-center p-2">
+            <div className="flex flex-col items-center justify-center text-slate-700 text-lg text-center p-2">
               <p className="">{movie.title}</p>
               <p className="text-center">⭐{movie.vote_average}</p>
             </div>
-            <div></div>
+            </a>
           </div>
-        </a>
+        
       ))}
       <button>Previous</button>
       <button onClick={() => nextPage(pageNumber.page || 1)}>Next</button>
