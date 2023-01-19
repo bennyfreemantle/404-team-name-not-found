@@ -77,7 +77,7 @@ export default function AllMoviesCard({ pageNumber }: any) {
 
   // debounce
 
-  //searchbar styling 
+  //searchbar styling
   //- size on large screen (break point)
   // colour to match wireframes
   //placeholder text & text colour
@@ -85,7 +85,30 @@ export default function AllMoviesCard({ pageNumber }: any) {
 
   return (
     <div className="w-full flex flex-wrap relative gap-y-8 gap-x-4 justify-evenly bg-slate-700 m-4">
-      <input placeholder="Search movies..." className="bg-slate-800 text-amber-50" type="text" onChange={(e) => setSearchTerm(e.target.value)} />
+      <div className="w-2/3 flex items-center relative">
+        <input
+          placeholder="Search movies..."
+          className="bg-slate-800 text-amber-50 indent-9 p-3 rounded-md text-lg w-full"
+          type="text"
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <Image
+          src="/search.svg"
+          alt="search icon"
+          width={20}
+          height={20}
+          className=" left-4 absolute w-5"
+        />
+      </div>
+      {/* 
+<div class="w-2/3 flex justify-end items-center relative">
+    <input
+       placeholder="Pesquisar"
+       class="border border-gray-400 rounded-lg p-4 w-full"
+    />
+    <img src="/icons/search.svg" class="absolute mr-2 w-10" alt="Search Icon" />
+</div> */}
+
       {movies?.map((movie: MovieResult) => (
         <a
           key={movie.id}
