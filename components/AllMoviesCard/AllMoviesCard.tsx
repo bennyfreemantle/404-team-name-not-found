@@ -116,7 +116,7 @@ export default function AllMoviesCard({ pageNumber }: any) {
           href={`https://www.themoviedb.org/movie/${movie.id}`}
           rel="noreferrer"
         >
-          <div className="relative h-[500px] flex flex-col w-44 drop-shadow-xl rounded-md overflow-hidden bg-amber-50 hover:opacity-70 hover:cursor-pointer md:w-56 xl:w-80">
+          <div className="relative h-[350px] flex flex-col w-44 drop-shadow-xl rounded-md overflow-hidden bg-amber-50 hover:opacity-70 hover:cursor-pointer md:w-55 xl:w-60">
             <Image
               onClick={() => handleClick(movie)}
               className="absolute z-10 left-0 top-0"
@@ -126,20 +126,20 @@ export default function AllMoviesCard({ pageNumber }: any) {
               height={40}
               style={{ width: "auto", height: "auto" }}
             />
-            <div className="relative h-full">
+            <div className="relative h-80">
               <Image
-                className="w-full relative object-cover object-center aspect-square"
+                className="w-80 relative object-cover object-center aspect-square"
                 // width={200}
                 // height={280}
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 fill
                 priority
                 sizes="50vw"
-                alt="movie poster"
+                alt={`${movie.title}`}
               />
             </div>
-            <div className="flex flex-1 flex-col items-center justify-center text-slate-700 text-lg text-center p-2">
-              <p className="">{movie.title}</p>
+            <div className="flex flex-1 flex-col items-center justify-center text-slate-700 text-md text-center p-1">
+            {/*   <p className="text-center text-ellipsis overflow-hidden  px-10">{movie.title} </p> */}
               <p className="text-center">⭐{movie.vote_average}</p>
             </div>
             <div></div>
