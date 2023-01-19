@@ -21,12 +21,9 @@ export default function Home() {
         <Header />
       </div>
       <Hero />
-
       <CarouselContainer />
       <div className="bg-slate-800">
-      <div className="flex flex-col items-center  container mx-auto my-0 p-3">
-      <Subscription />
-      </div>
+        <Subscription />
       </div>
       <Footer />
     </div>

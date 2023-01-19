@@ -13,7 +13,9 @@ export default function Header({
       <Logo />
       <span className="flex-1"></span>
       <div className="flex items-center gap-5">
-        {disableButton ? "" : <LoginButton />}
+        <div className="hidden md:flex">
+          {disableButton ? "" : <LoginButton />}
+        </div>
         <Navbar />
       </div>
     </header>
