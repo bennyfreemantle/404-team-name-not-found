@@ -87,7 +87,7 @@ export default function AllMoviesCard({ pageNumber }: any) {
           href={`https://www.themoviedb.org/movie/${movie.id}`}
           rel="noreferrer"
         >
-          <div className="relative h-[500px] flex flex-col w-44 drop-shadow-xl rounded-md overflow-hidden bg-amber-50 hover:opacity-70 hover:cursor-pointer md:w-56 xl:w-80">
+          <div className="relative h-[350px] flex flex-col w-44 drop-shadow-xl rounded-md overflow-hidden bg-amber-50 hover:opacity-70 hover:cursor-pointer md:w-56 xl:w-40">
             <Image
               onClick={() => handleClick(movie)}
               className="absolute z-10 left-0 top-0"
@@ -109,7 +109,7 @@ export default function AllMoviesCard({ pageNumber }: any) {
                 alt="movie poster"
               />
             </div>
-            <div className="flex flex-1 flex-col items-center justify-center text-slate-700 text-lg text-center p-2">
+            <div className="flex flex-1 flex-col items-center justify-center text-slate-700 text-lg text-center p-4">
               <p className="">{movie.title}</p>
               <p className="text-center">⭐{movie.vote_average}</p>
             </div>
