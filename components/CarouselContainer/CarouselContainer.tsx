@@ -8,12 +8,12 @@ import Image from "next/image";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
+    breakpoint: { max: 4000, min: 2000 },
     items: 10,
   },
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 7,
+    breakpoint: { max: 2000, min: 1024 },
+    items: 5,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
@@ -21,7 +21,7 @@ const responsive = {
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1,
+    items: 2,
   },
 };
 
@@ -39,7 +39,12 @@ export function CarouselContainer() {
   return (
     <div className="m-4">
       <h1 className="mb-4 text-amber-50 text-3xl p-4">Top Rated Movies</h1>
-      <Carousel responsive={responsive} infinite={true} autoPlaySpeed={1000}>
+      <Carousel
+        responsive={responsive}
+        infinite={true}
+        autoPlaySpeed={2000}
+        autoPlay={true}
+      >
         {movies ? (
           movies.map((movie) => {
             return (

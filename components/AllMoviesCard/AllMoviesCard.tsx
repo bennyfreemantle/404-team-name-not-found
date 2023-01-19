@@ -133,9 +133,10 @@ export default function AllMoviesCard({ pageNumber }: any) {
                 // height={280}
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 fill
-                priority
-                sizes="50vw"
-                alt={`${movie.title}`}
+
+                priority={true}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                alt={`${movie.title}
               />
             </div>
             <div className="flex flex-1 flex-col items-center justify-center text-slate-700 text-md text-center p-1">
