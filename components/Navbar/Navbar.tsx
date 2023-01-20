@@ -30,11 +30,8 @@ export default function Navbar() {
             <Link href="/profile" onClick={() => setIsNavOpen(false)}>
               <li className="text-2xl">My Account</li>
             </Link>
-            <Link href="/" onClick={() => setIsNavOpen(false)}>
+            <Link href="/allmovies" onClick={() => setIsNavOpen(false)}>
               <li className="text-2xl">All Movies</li>
-            </Link>
-            <Link href="/" onClick={() => setIsNavOpen(false)}>
-              <li className="text-2xl">Top 100 List</li>
             </Link>
             <Link href="/movierecs" onClick={() => setIsNavOpen(false)}>
               <li className="text-2xl">Your Movie List</li>
