@@ -8,7 +8,7 @@ import useDebounce from "../../hooks/useDebounce";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { Database } from "../../types/supabase";
 import Image from "next/image";
-import AllMoviesCard from "../allMoviesCard/AllMoviesCard";
+import AllMoviesCard from "../AllMoviesCard/AllMoviesCard";
 
 export default function AllMoviesContainer({ pageNumber }: any) {
   const user = useUser();
