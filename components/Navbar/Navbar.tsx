@@ -14,7 +14,7 @@ export default function Navbar() {
           onClick={() => setIsNavOpen(!isNavOpen)}
           className="btn btn-square btn-ghost text-amber-50"
         >
-          {isNavOpen ? "" : <RxHamburgerMenu size={35} />}
+          {isNavOpen ? "" : <RxHamburgerMenu size={40} />}
         </button>
       </nav>
 

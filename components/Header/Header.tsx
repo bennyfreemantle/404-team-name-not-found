@@ -9,10 +9,9 @@ export default function Header({
   disableButton?: boolean;
 }) {
   return (
-    <header className="flex h-20 navbar bg-base-100">
+    <header className="container flex justify-between mx-auto p-3">
       <Logo />
-      <span className="flex-1"></span>
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-8">
         <div className="hidden md:flex">
           {disableButton ? "" : <LoginButton />}
         </div>
