@@ -100,14 +100,6 @@ export default function AllMoviesCard({ pageNumber }: any) {
           className=" left-4 absolute w-5"
         />
       </div>
-      {/* 
-<div class="w-2/3 flex justify-end items-center relative">
-    <input
-       placeholder="Pesquisar"
-       class="border border-gray-400 rounded-lg p-4 w-full"
-    />
-    <img src="/icons/search.svg" class="absolute mr-2 w-10" alt="Search Icon" />
-</div> */}
 
       {movies?.map((movie: MovieResult) => (
         <a
@@ -133,17 +125,14 @@ export default function AllMoviesCard({ pageNumber }: any) {
                 // height={280}
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 fill
-
                 priority={true}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                alt={`${movie.title}
+                alt={`${movie.title}`}
               />
             </div>
             <div className="flex flex-1 flex-col items-center justify-center text-slate-700 text-md text-center p-1">
-            {/*   <p className="text-center text-ellipsis overflow-hidden  px-10">{movie.title} </p> */}
               <p className="text-center">⭐{movie.vote_average}</p>
             </div>
-            <div></div>
           </div>
         </a>
       ))}
