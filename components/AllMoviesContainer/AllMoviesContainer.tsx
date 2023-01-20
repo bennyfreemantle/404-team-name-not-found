@@ -44,6 +44,7 @@ export default function AllMoviesContainer({ pageNumber }: any) {
   });
 
   async function addMovieToUser(movie: MovieResult) {
+    if (confirm('Do you want to add this film to your list?') === true){  
     if (!user) return;
     try {
       const {
@@ -64,6 +65,7 @@ export default function AllMoviesContainer({ pageNumber }: any) {
     } catch (error) {
       console.log(error);
     }
+  }
   }
 
   async function searchCharacters(search: SearchMovieRequest) {

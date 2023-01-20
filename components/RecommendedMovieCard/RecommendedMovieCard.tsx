@@ -52,23 +52,25 @@ export default function RecommendedMovieCard({
   }
 
   async function handleDelete(movie: Movies) {
-    if (!user) return;
-    try {
-      const {
-        data: movieData,
-        error,
-        status,
-      } = await supabase.from("movies").delete().eq("id", movie.id);
-      if (error && status !== 406) {
-        throw error;
+    if (confirm('Do you want to delete this film from your list?') === true){
+      if (!user) return;
+      try {
+        const {
+          data: movieData,
+          error,
+          status,
+        } = await supabase.from("movies").delete().eq("id", movie.id);
+        if (error && status !== 406) {
+          throw error;
+        }
+        console.log(movieData);
+      } catch (error) {
+        console.log(error);
       }
-      console.log(movieData);
-    } catch (error) {
-      console.log(error);
+      console.log(movie);
+      getMovies();
     }
-    console.log(movie);
-    getMovies();
-  }
+  }  
 
   // TODO : Generate and save the base url for the card link /tv or /movie
 
