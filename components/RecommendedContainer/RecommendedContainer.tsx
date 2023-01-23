@@ -46,7 +46,6 @@ export default function RecommendedContainer({
       }
 
       if (movies) {
-        console.log(movies);
         setMovies(movies);
       }
     } catch (error) {
@@ -67,13 +66,13 @@ export default function RecommendedContainer({
         } = await supabase.from("movies").delete().eq("id", movie.id);
         if (error && status !== 406) {
           throw error;
+        } else {
+          getMovies();
         }
-        console.log(movieData);
       } catch (error) {
         console.log(error);
       }
       console.log(movie);
-      getMovies();
     }
   }
 
@@ -99,7 +98,6 @@ export default function RecommendedContainer({
       <div>
         <div className="w-full flex flex-wrap relative gap-y-8 gap-x-4 justify-evenly bg-slate-700 m-4">
           {filteredMovie?.map((movie) => {
-            console.log(filteredMovie);
             return (
               <MovieCard
                 key={movie.id}
