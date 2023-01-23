@@ -44,28 +44,28 @@ export default function AllMoviesContainer({ pageNumber }: any) {
   });
 
   async function addMovieToUser(movie: MovieResult) {
-    if (confirm('Do you want to add this film to your list?') === true){  
-    if (!user) return;
-    try {
-      const {
-        data: movieData,
-        error,
-        status,
-      } = await supabase.from("movies").insert([
-        {
-          movie_id: movie.id,
-          title: movie.title,
-          image_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-          user_id: user.id,
-        },
-      ]);
-      if (error && status !== 406) {
-        throw error;
+    if (confirm("Do you want to add this film to your list?") === true) {
+      if (!user) return;
+      try {
+        const {
+          data: movieData,
+          error,
+          status,
+        } = await supabase.from("movies").insert([
+          {
+            movie_id: movie.id,
+            title: movie.title,
+            image_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+            user_id: user.id,
+          },
+        ]);
+        if (error && status !== 406) {
+          throw error;
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
-  }
   }
 
   async function searchCharacters(search: SearchMovieRequest) {
@@ -74,7 +74,7 @@ export default function AllMoviesContainer({ pageNumber }: any) {
   }
 
   return (
-    <div className="w-full flex flex-wrap relative gap-y-8 gap-x-4 justify-evenly bg-slate-700 m-4">
+    <div className="w-full flex flex-col gap-8 bg-slate-700">
       <Image
         src="/search.svg"
         alt="search icon"
@@ -88,13 +88,15 @@ export default function AllMoviesContainer({ pageNumber }: any) {
         type="text"
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      {movies?.map((movie: MovieResult) => (
-        <AllMoviesCard
-          key={movie.id}
-          addMovieToUser={addMovieToUser}
-          movie={movie}
-        />
-      ))}
+      <div className="w-full flex flex-wrap gap-6 justify-evenly">
+        {movies?.map((movie: MovieResult) => (
+          <AllMoviesCard
+            key={movie.id}
+            addMovieToUser={addMovieToUser}
+            movie={movie}
+          />
+        ))}
+      </div>
     </div>
   );
 }
