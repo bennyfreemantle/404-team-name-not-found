@@ -21,6 +21,10 @@ export default function RecommendedMovieCard({
   const supabase = useSupabaseClient<Database>();
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState<Movies[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const filteredMovie = movies.filter((movie) =>
+    movie.title?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   useEffect(() => {
     getMovies();
@@ -52,7 +56,7 @@ export default function RecommendedMovieCard({
   }
 
   async function handleDelete(movie: Movies) {
-    if (confirm('Do you want to delete this film from your list?') === true){
+    if (confirm("Do you want to delete this film from your list?") === true) {
       if (!user) return;
       try {
         const {
@@ -70,57 +74,64 @@ export default function RecommendedMovieCard({
       console.log(movie);
       getMovies();
     }
-  }  
+  }
 
   // TODO : Generate and save the base url for the card link /tv or /movie
 
   return (
-    <div className="w-full flex flex-wrap relative gap-y-8 gap-x-4 justify-evenly bg-slate-700 m-4">
-      {movies?.map((movie) => {
-        return (
-          // <a
-          //   key={movie.id}
-          //   target={"_blank"}
-          //   href={`https://www.themoviedb.org/movie/${movie.movie_id}`}
-          //   rel="noreferrer"
-          // >
-          <div
-            className="relative h-[500px] flex flex-col w-44 drop-shadow-xl rounded-md overflow-hidden bg-amber-50 hover:opacity-70 hover:cursor-pointer md:w-56 xl:w-80"
-            key={movie.id}
-          >
-            {/* <MdDelete
-              className="absolute z-10 left-0 top-0 text-slate-900"
-              size={50}
-              onClick={() => handleDelete(movie)}
-            /> */}
-            <Image
-              onClick={() => handleDelete(movie)}
-              className="absolute z-10 left-0 top-0"
-              src="/delete.svg"
-              alt="delete icon"
-              width={50}
-              height={50}
-              // style={{ width: "auto", height: "auto" }}
-            />
+    <>
+      <div className="w-full flex flex-wrap relative gap-y-8 gap-x-4 justify-evenly bg-slate-700 m-4">
+        <Image
+          src="/search.svg"
+          alt="search icon"
+          width={25}
+          height={25}
+          className="left-4 top-4 absolute w-5"
+        />
+        <input
+          placeholder="Search on your movie list..."
+          className="bg-slate-800 text-amber-50 indent-9 p-3 rounded-md text-lg w-full"
+          type="text"
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+      <div>
+        <div className="w-full flex flex-wrap relative gap-y-8 gap-x-4 justify-evenly bg-slate-700 m-4">
+          {filteredMovie?.map((movie) => {
+            console.log(filteredMovie);
+            return (
+              <div
+                className="relative h-[500px] flex flex-col w-44 drop-shadow-xl rounded-md overflow-hidden bg-amber-50 hover:opacity-70 hover:cursor-pointer md:w-56 xl:w-80"
+                key={movie.id}
+              >
+                <Image
+                  onClick={() => handleDelete(movie)}
+                  className="absolute z-10 left-0 top-0"
+                  src="/delete.svg"
+                  alt="delete icon"
+                  width={50}
+                  height={50}
+                />
 
-            <div className="relative h-full">
-              <Image
-                className="w-full relative object-cover object-center aspect-square"
-                src={`https://image.tmdb.org/t/p/w500${movie.image_url}`}
-                fill
-                priority
-                sizes="50vw"
-                alt="movie poster"
-              />
-            </div>
+                <div className="relative h-full">
+                  <Image
+                    className="w-full relative object-cover object-center aspect-square"
+                    src={`https://image.tmdb.org/t/p/w500${movie.image_url}`}
+                    fill
+                    priority
+                    sizes="50vw"
+                    alt="movie poster"
+                  />
+                </div>
 
-            <p className="flex-1 flex items-center justify-center text-slate-700 text-lg text-center p-2">
-              {movie.title}
-            </p>
-          </div>
-          // </a>
-        );
-      })}
-    </div>
+                <p className="flex-1 flex items-center justify-center text-slate-700 text-lg text-center p-2">
+                  {movie.title}
+                </p>
+              </div>             
+            );
+          })}
+        </div>
+      </div>
+    </>
   );
 }
