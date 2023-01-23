@@ -101,7 +101,11 @@ export default function RecommendedContainer({
           {filteredMovie?.map((movie) => {
             console.log(filteredMovie);
             return (
-             <MovieCard key={movie.id} movie={movie}/>
+              <MovieCard
+                key={movie.id}
+                movie={movie}
+                handleDelete={handleDelete}
+              />
             );
           })}
         </div>
