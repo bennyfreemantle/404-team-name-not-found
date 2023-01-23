@@ -1,6 +1,7 @@
 import { MovieResult } from "moviedb-promise";
 import Image from "next/image";
 import React from "react";
+import {BsInfoCircleFill} from "react-icons/bs";
 
 export default function AllMoviesCard({
   addMovieToUser,
@@ -11,10 +12,10 @@ export default function AllMoviesCard({
 }) {
   return (
     <div>
-      <div className="relative h-[350px] flex flex-col w-44 drop-shadow-xl rounded-md overflow-hidden bg-amber-50 hover:opacity-70 hover:cursor-pointer md:w-55 xl:w-60">
+      <div className="relative h-[350px] flex flex-col w-44 drop-shadow-xl rounded-md overflow-hidden bg-amber-50 md:w-55 xl:w-60">
         <Image
           onClick={() => addMovieToUser(movie)}
-          className="absolute z-10 left-0 top-0"
+          className="absolute z-10 left-0 top-0 cursor-pointer"
           src="/bookmark.svg"
           alt="bookmark icon"
           width={40}
@@ -33,8 +34,11 @@ export default function AllMoviesCard({
             alt={`${movie.title}`}
           />
         </div>
-        <div className="flex flex-1 flex-col items-center justify-center text-slate-700 text-md text-center p-1">
-          <p className="text-center">⭐{movie.vote_average}</p>
+        <div className="flex flex-1 items-center justify-between text-slate-700 text-md text-center p-1">
+          <p>⭐{movie.vote_average}</p>
+          <a target="_blank" href={`https://www.themoviedb.org/movie/${movie.id}`}>
+          <BsInfoCircleFill size={25} className="hover:opacity-70 hover:cursor-pointer"/>
+          </a> 
         </div>
       </div>
     </div>
