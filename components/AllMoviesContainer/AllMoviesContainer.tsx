@@ -22,30 +22,45 @@ export default function AllMoviesContainer({ pageNumber }: any) {
     () => {
       if (debouncedSearchTerm) {
         setIsSearching(true);
-        searchCharacters(debouncedSearchTerm).then((results) => {
+        filterMovies(debouncedSearchTerm).then((results) => {
           setIsSearching(false);
           setMovies(results);
         });
       } else {
-        setMovies([]);
+        searchPopularMovies();
       }
     },
     [debouncedSearchTerm] // Only call effect if debounced search term changes
   );
 
-  useEffect(() => {
-    async function searchPopularMovies() {
-      const response = await moviedb.moviePopular(pageNumber);
-      setMovies(response.results);
-    }
-    if (!searchTerm) {
-      searchPopularMovies();
-    }
-  });
+  async function searchPopularMovies() {
+    const response = await moviedb.moviePopular(pageNumber);
+    setMovies(response.results);
+  }
+
+  async function filterMovies(search: SearchMovieRequest) {
+    const response = await moviedb.searchMovie(search);
+    return response.results;
+  }
 
   async function addMovieToUser(movie: MovieResult) {
     if (confirm("Do you want to add this film to your list?") === true) {
       if (!user) return;
+      try {
+        // check if the movie already exsists on our user
+        const { data, error, status } = await supabase
+          .from("movies")
+          .select("*")
+          .eq("movie_id", movie.id);
+        // return because we already have that movie added to our user
+        if (data) {
+          // todo Let the user know they already have that movie added
+          console.log("movie already added to user");
+          return;
+        }
+      } catch (error) {
+        console.log("error " + error);
+      }
       try {
         const {
           data: movieData,
@@ -68,13 +83,8 @@ export default function AllMoviesContainer({ pageNumber }: any) {
     }
   }
 
-  async function searchCharacters(search: SearchMovieRequest) {
-    const response = await moviedb.searchMovie(search);
-    return response.results;
-  }
-
   return (
-    <div className="w-full flex flex-col gap-8 bg-slate-700">
+    <div className="w-full flex flex-col gap-8 justify-center-center bg-slate-700">
       <Image
         src="/search.svg"
         alt="search icon"
@@ -88,7 +98,7 @@ export default function AllMoviesContainer({ pageNumber }: any) {
         type="text"
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <div className="w-full flex flex-wrap gap-6 justify-evenly">
+      <div className="w-full flex flex-wrap gap-12 justify-evenly">
         {movies?.map((movie: MovieResult) => (
           <AllMoviesCard
             key={movie.id}

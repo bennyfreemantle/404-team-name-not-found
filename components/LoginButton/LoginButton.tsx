@@ -18,7 +18,7 @@ export default function LoginButton() {
       {session ? (
         <button
           onClick={logout}
-          className="w-28 p-1 text-md uppercase font-semibold bg-amber-50 rounded-xl text-slate-900"
+          className="w-28 p-1 text-lg uppercase font-semibold bg-amber-50 rounded-md text-slate-900"
         >
           Logout
         </button>
