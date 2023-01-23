@@ -7,13 +7,14 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
-import RecommendedMovieCard from "../components/RecommendedMovieCard/RecommendedMovieCard";
+import RecommendedMovieCard from "../components/RecommendedContainer/RecommendedContainer";
 import { useEffect, useLayoutEffect } from "react";
 import { GetServerSidePropsContext } from "next";
 import {
   User,
   createServerSupabaseClient,
 } from "@supabase/auth-helpers-nextjs";
+import RecommendedContainer from "../components/RecommendedContainer/RecommendedContainer";
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   // Create authenticated Supabase Client
@@ -62,7 +63,7 @@ export default function MovieRecs({ user }: { user: User }) {
             Your Recommended Movies
           </h2>
           <div className="flex flex-wrap">
-            {user ? <RecommendedMovieCard user={user} /> : null}
+            {user ? <RecommendedContainer user={user} /> : null}
           </div>
         </div>
       </div>
