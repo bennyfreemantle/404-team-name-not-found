@@ -1,7 +1,8 @@
 import { MovieResult } from "moviedb-promise";
 import Image from "next/image";
 import React from "react";
-import {BsInfoCircleFill} from "react-icons/bs";
+import { BsInfoCircleFill } from "react-icons/bs";
+import { AiFillStar } from "react-icons/ai";
 
 export default function AllMoviesCard({
   addMovieToUser,
@@ -11,8 +12,8 @@ export default function AllMoviesCard({
   movie: MovieResult;
 }) {
   return (
-    <div>
-      <div className="relative h-[350px] flex flex-col w-44 drop-shadow-xl rounded-md overflow-hidden bg-amber-50 md:w-55 xl:w-60">
+    <div className="flex flex-col">
+      <div className="drop-shadow-xl rounded-md bg-amber-50">
         <Image
           onClick={() => addMovieToUser(movie)}
           className="absolute z-10 left-0 top-0 cursor-pointer"
@@ -22,11 +23,8 @@ export default function AllMoviesCard({
           height={40}
           style={{ width: "auto", height: "auto" }}
         />
-        <div className="relative h-80">
+        <div className="relative w-32 h-40 md:w-40 md:h-52 lg:w-48 lg:h-64">
           <Image
-            className="w-80 relative object-cover object-center aspect-square"
-            // width={200}
-            // height={280}
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             fill
             priority={true}
@@ -34,11 +32,22 @@ export default function AllMoviesCard({
             alt={`${movie.title}`}
           />
         </div>
-        <div className="flex flex-1 items-center justify-between text-slate-700 text-md text-center p-1">
-          <p>⭐{movie.vote_average}</p>
-          <a target="_blank" href={`https://www.themoviedb.org/movie/${movie.id}`}>
-          <BsInfoCircleFill size={25} className="hover:opacity-70 hover:cursor-pointer"/>
-          </a> 
+
+        <div className="flex flex-1 items-center justify-between text-slate-700 text-md p-1">
+          <div className="flex items-center gap-1">
+            <AiFillStar className="text-red-500" size={20} />
+            <p className="font-semibold">{movie.vote_average}</p>
+          </div>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href={`https://www.themoviedb.org/movie/${movie.id}`}
+          >
+            <BsInfoCircleFill
+              size={20}
+              className="hover:opacity-70 hover:cursor-pointer"
+            />
+          </a>
         </div>
       </div>
     </div>
