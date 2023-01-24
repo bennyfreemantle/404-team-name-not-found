@@ -79,8 +79,8 @@ export default function RecommendedContainer({
   // TODO : Generate and save the base url for the card link /tv or /movie
 
   return (
-    <>
-      <div className="w-full flex flex-wrap relative gap-y-8 gap-x-4 justify-evenly bg-slate-700 m-4">
+    <div className="w-full flex flex-col gap-8 justify-center-center bg-slate-700">
+      <div className="relative">
         <Image
           src="/search.svg"
           alt="search icon"
@@ -89,14 +89,14 @@ export default function RecommendedContainer({
           className="left-4 top-4 absolute w-5"
         />
         <input
-          placeholder="Search on your movie list..."
+          placeholder="Search movies..."
           className="bg-slate-800 text-amber-50 indent-9 p-3 rounded-md text-lg w-full"
           type="text"
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
       <div>
-        <div className="w-full flex flex-wrap relative gap-y-8 gap-x-4 justify-evenly bg-slate-700 m-4">
+        <div className="w-full flex flex-wrap gap-12 justify-evenly">
           {filteredMovie?.map((movie) => {
             return (
               <MovieCard
@@ -108,6 +108,6 @@ export default function RecommendedContainer({
           })}
         </div>
       </div>
-    </>
+    </div>
   );
 }
