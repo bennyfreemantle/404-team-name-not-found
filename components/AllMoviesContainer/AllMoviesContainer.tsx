@@ -46,6 +46,22 @@ export default function AllMoviesContainer({ pageNumber }: any) {
   async function addMovieToUser(movie: MovieResult) {
     if (confirm("Do you want to add this film to your list?") === true) {
       if (!user) return;
+      // try {
+      //   // check if the movie already exsists on our user
+      //   const { data, error, status } = await supabase
+      //     .from("movies")
+      //     .select("*")
+      //     .eq("movie_id", movie.id);
+      //   // return because we already have that movie added to our user
+      //   console.log(data);
+      //   if (data) {
+      //     // todo Let the user know they already have that movie added
+      //     console.log("movie already added to user");
+      //     return;
+      //   }
+      // } catch (error) {
+      //   console.log("error " + error);
+      // }
       try {
         // check if the movie already exsists on our user
         const { data, error, status } = await supabase
