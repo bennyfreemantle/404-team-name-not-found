@@ -9,8 +9,6 @@ export default function Header() {
 
   const user = useUser();
 
-  console.log(user);
-
   return (
     <header>
       <div className="container flex justify-between mx-auto p-3">

@@ -51,6 +51,9 @@ export default function Login() {
                 }}
                 appearance={{
                   theme: ThemeSupa,
+                  style: {
+                    message: { color: "#fffbeb", fontSize: "16px" },
+                  },
                   variables: {
                     default: {
                       colors: {
