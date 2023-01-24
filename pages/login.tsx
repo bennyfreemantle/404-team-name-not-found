@@ -24,7 +24,7 @@ export default function Login() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header disableButton={true} />
+      <Header />
 
       <div className="bg-slate-800 flex-1 flex flex-col">
         <div className="container flex flex-grow p-8 mx-auto md:max-w-2xl">
@@ -118,9 +118,7 @@ export default function Login() {
                 }}
               />
             </div>
-          ) : (
-            <p>User logged in {user.email}</p>
-          )}
+          ) : null}
         </div>
         <Footer />
       </div>

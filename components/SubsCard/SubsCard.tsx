@@ -18,8 +18,8 @@ export default function SubsCard({
   return (
     <div
       onClick={onClick}
-      className={`m-2 w-full bg-slate-900 text-white p-4 rounded-lg md:h-96 lg:h-72 lg:w-96 ${
-        isSelected ? "border-2 border-red-400" : ""
+      className={`cursor-pointer m-2 w-full bg-slate-900 text-white p-4 rounded-lg md:h-96 lg:h-72 lg:w-96 ${
+        isSelected ? "border-2 border-red-400" : "border-2 border-transparent"
       }`}
     >
       <div>

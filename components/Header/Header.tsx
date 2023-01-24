@@ -21,23 +21,25 @@ export default function Header() {
       </div>
       <div className="container flex flex-col items-center text-center mx-auto p-3 md:items-end">
         <div className="flex gap-2 items-center text-amber-50 font-bold">
-          Account
           {user ? (
-            <div>
-              {loginUIVisible ? (
-                <AiFillEye
-                  size={30}
-                  className="text-amber-50 cursor-pointer"
-                  onClick={() => setLoginUIVisible((prev) => !prev)}
-                />
-              ) : (
-                <AiFillEyeInvisible
-                  size={30}
-                  className="text-amber-50 cursor-pointer"
-                  onClick={() => setLoginUIVisible((prev) => !prev)}
-                />
-              )}
-            </div>
+            <>
+              Account
+              <div>
+                {loginUIVisible ? (
+                  <AiFillEye
+                    size={30}
+                    className="text-amber-50 cursor-pointer"
+                    onClick={() => setLoginUIVisible((prev) => !prev)}
+                  />
+                ) : (
+                  <AiFillEyeInvisible
+                    size={30}
+                    className="text-amber-50 cursor-pointer"
+                    onClick={() => setLoginUIVisible((prev) => !prev)}
+                  />
+                )}
+              </div>
+            </>
           ) : null}
         </div>
         {user && loginUIVisible ? (
