@@ -19,4 +19,10 @@ describe("Hero component", () => {
     expect(button).toBeInTheDocument()
 
   })
+  it("Should display the heading", ()=> {
+    render(<Hero/>)
+    const heroText = screen.getByRole('heading')
+    expect(heroText).toHaveTextContent("Losing track of all the movies & TV shows that friends recommend to you ?")
+  }
+  )
 });
