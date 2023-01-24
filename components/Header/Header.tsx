@@ -19,35 +19,35 @@ export default function Header() {
           <Navbar />
         </div>
       </div>
-      <div className="container flex flex-col items-center text-center mx-auto p-3 md:items-end">
-        <div className="flex gap-2 items-center text-amber-50 font-bold">
-          {user ? (
-            <>
-              Account
-              <div>
-                {loginUIVisible ? (
-                  <AiFillEye
-                    size={30}
-                    className="text-amber-50 cursor-pointer"
-                    onClick={() => setLoginUIVisible((prev) => !prev)}
-                  />
-                ) : (
-                  <AiFillEyeInvisible
-                    size={30}
-                    className="text-amber-50 cursor-pointer"
-                    onClick={() => setLoginUIVisible((prev) => !prev)}
-                  />
-                )}
-              </div>
-            </>
+      {user ? (
+        <div className="container flex flex-col items-center text-center mx-auto p-3 md:items-end">
+          <div className="flex gap-2 items-center text-amber-50 font-bold">
+            Account
+            <div>
+              {loginUIVisible ? (
+                <AiFillEye
+                  size={30}
+                  className="text-amber-50 cursor-pointer"
+                  onClick={() => setLoginUIVisible((prev) => !prev)}
+                />
+              ) : (
+                <AiFillEyeInvisible
+                  size={30}
+                  className="text-amber-50 cursor-pointer"
+                  onClick={() => setLoginUIVisible((prev) => !prev)}
+                />
+              )}
+            </div>
+          </div>
+          {user && loginUIVisible ? (
+            <div>
+              <p className="text-amber-50 text-xs font-semibold">
+                {user.email}
+              </p>
+            </div>
           ) : null}
         </div>
-        {user && loginUIVisible ? (
-          <div>
-            <p className="text-amber-50 text-xs font-semibold">{user.email}</p>
-          </div>
-        ) : null}
-      </div>
+      ) : null}
     </header>
   );
 }
