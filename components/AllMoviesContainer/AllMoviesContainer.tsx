@@ -61,6 +61,7 @@ export default function AllMoviesContainer({ pageNumber }: any) {
             title: movie.title,
             image_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
             user_id: user.id,
+            rating: movie.vote_average,
           },
         ]);
         if (error && status !== 406) {
@@ -74,19 +75,21 @@ export default function AllMoviesContainer({ pageNumber }: any) {
 
   return (
     <div className="w-full flex flex-col gap-8 justify-center-center bg-slate-700">
-      <Image
-        src="/search.svg"
-        alt="search icon"
-        width={25}
-        height={25}
-        className="left-4 top-4 absolute w-5"
-      />
-      <input
-        placeholder="Search movies..."
-        className="bg-slate-800 text-amber-50 indent-9 p-3 rounded-md text-lg w-full"
-        type="text"
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      <div className="relative">
+        <Image
+          src="/search.svg"
+          alt="search icon"
+          width={25}
+          height={25}
+          className="left-4 top-4 absolute w-5"
+        />
+        <input
+          placeholder="Search movies..."
+          className="bg-slate-800 text-amber-50 indent-9 p-3 rounded-md text-lg w-full"
+          type="text"
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
       <div className="w-full flex flex-wrap gap-12 justify-evenly">
         {movies?.map((movie: MovieResult) => (
           <AllMoviesCard

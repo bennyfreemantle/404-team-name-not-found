@@ -36,9 +36,6 @@ export default function Navbar() {
             <Link href="/movierecs" onClick={() => setIsNavOpen(false)}>
               <li className="text-2xl">Your Movie List</li>
             </Link>
-            <Link href="/" onClick={() => setIsNavOpen(false)}>
-              <li className="text-2xl">Friends List</li>
-            </Link>
             <div className="absolute bottom-20">
               <LoginButton />
             </div>
