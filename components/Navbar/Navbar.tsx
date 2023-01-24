@@ -9,12 +9,13 @@ export default function Navbar() {
 
   return (
     <div>
-      <nav className="flex items-center">
+      <nav className="flex items- justify-end">
         <button
           onClick={() => setIsNavOpen(!isNavOpen)}
           className="btn btn-square btn-ghost text-amber-50"
         >
-          {isNavOpen ? "" : <RxHamburgerMenu size={50} />}
+          <RxHamburgerMenu size={50} />
+          {/* {isNavOpen ? "" : <RxHamburgerMenu size={50} />} */}
         </button>
       </nav>
 
