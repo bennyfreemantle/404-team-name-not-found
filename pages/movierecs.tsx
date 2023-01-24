@@ -59,9 +59,7 @@ export default function MovieRecs({ user }: { user: User }) {
 
       <div className="bg-slate-700">
         <div className="flex flex-col min-h-screen container mx-auto my-0 p-3">
-          <h2 className="text-amber-50 text-2xl py-5">
-            Your Recommended Movies
-          </h2>
+          <h2 className="text-amber-50 text-3xl py-5 ">All Movies</h2>
           <div className="flex flex-wrap">
             {user ? <RecommendedContainer user={user} /> : null}
           </div>

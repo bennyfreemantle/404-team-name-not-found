@@ -21,7 +21,6 @@ export default function AllMoviesCard({
           alt="bookmark icon"
           width={40}
           height={40}
-          style={{ width: "auto", height: "auto" }}
         />
         <div className="relative w-32 h-40 md:w-40 md:h-52 lg:w-48 lg:h-64">
           <Image
