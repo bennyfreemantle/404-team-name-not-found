@@ -31,9 +31,10 @@ const directorDetail = [
 export default function Subscription() {
   const [checked, setChecked] = useState("PREMIUM");
   return (
+
     <section id="subscription-section" className="container p-3 mx-auto">
       <p className="text-amber-50 text-center text-4xl my-8">SUBSCRIPTION</p>
-      <div className="flex flex-col items-center md:flex-row md:justify-center">
+      <div className="flex flex-col items-center md:flex-row md:justify-center" data-testid="SubsCard">
         <SubsCard
           title="Film Enthusiast"
           price="£0.00"
@@ -58,6 +59,7 @@ export default function Subscription() {
       </div>
       <div className="flex justify-center p-10">
         <Link href={"/login"}>
+
           <CTAButton
             className="py-4 px-8 rounded-lg bg-red-400 text-amber-50 text-lg uppercase font-bold hover:bg-red-500 hover:scale-105 hover:transition-all m-2 w-80"
             text="Next Step"

@@ -14,4 +14,11 @@ describe("Header component", () => {
 
     expect(logoText).toHaveTextContent(projectName);
   });
+  it("Should detect if the Navbar is displayed", () => {
+    render(<Header />);
+
+    const hamburguerIcon = screen.getByTestId("hamburguer-menu");
+
+    expect(hamburguerIcon).toBeInTheDocument();
+  });
 });

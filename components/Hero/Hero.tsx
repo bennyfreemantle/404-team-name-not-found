@@ -7,6 +7,7 @@ export default function Hero() {
     <div className="w-full h-[60vh] relative">
       <div className="-z-10">
         <Image
+          data-testid="landing-photo"
           className="object-cover object-center brightness-75"
           fill
           priority
