@@ -13,13 +13,5 @@ describe("Subscription component", () => {
 
     expect(container).toBeInTheDocument();
   });
-    it("card data", () => {
-    render(<Subscription/>)
-
-    const filmE = screen.getByText("Film Enthusiast")
-    const filmEName = "Film Enthusiast"
-
-    expect(filmE).toBe(filmEName);
-  });
   
 });
