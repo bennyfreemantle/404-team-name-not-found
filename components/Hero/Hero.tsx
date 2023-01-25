@@ -19,11 +19,13 @@ export default function Hero() {
           Losing track of all the movies & TV shows that friends recommend to
           you ?
         </h1>
-        <CTAButton
-          className="py-4 px-8 rounded-lg bg-red-400 text-amber-50 text-lg uppercase font-bold hover:bg-red-500 hover:scale-105 hover:transition-all"
-          text="Get Started - It's Free"
-          handleClick={() => console.log("clicked")}
-        />
+        <a href="#subscription-section">
+          <CTAButton
+            className="py-4 px-8 rounded-lg bg-red-400 text-amber-50 text-lg uppercase font-bold hover:bg-red-500 hover:scale-105 hover:transition-all"
+            text="Get Started - It's Free"
+            // handleClick={() => console.log("clicked")}
+          />
+        </a>
       </div>
     </div>
   );

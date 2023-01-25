@@ -1,15 +1,38 @@
 import Head from "next/head";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
-
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 import AccountProfile from "../components/AccountProfile/AccountProfile";
+import {
+  createServerSupabaseClient,
+  User,
+} from "@supabase/auth-helpers-nextjs";
+import { GetServerSidePropsContext } from "next";
 
-export default function Profile() {
-  const session = useSession();
-  const supabase = useSupabaseClient();
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  // Create authenticated Supabase Client
+  const supabase = createServerSupabaseClient(ctx);
+  // Check if we have a session
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
+  if (!session)
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+
+  return {
+    props: {
+      initialSession: session,
+      user: session.user,
+    },
+  };
+};
+
+export default function Profile({ user }: { user: User }) {
   return (
     <div className="bg-slate-900">
       <div className="flex flex-col container mx-auto my-0 p-3">
@@ -22,15 +45,7 @@ export default function Profile() {
         <Header />
       </div>
 
-      {!session ? (
-        <Auth
-          supabaseClient={supabase}
-          appearance={{ theme: ThemeSupa }}
-          theme="dark"
-        />
-      ) : (
-        <AccountProfile session={session} />
-      )}
+      {user ? <AccountProfile /> : null}
 
       <Footer />
     </div>
