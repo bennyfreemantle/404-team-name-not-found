@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# CineMate
 
-First, run the development server:
+Have you ever received a recommendation for a really interesting movie, wrote it down on a piece of paper, or your notetaking app and ended up forgetting about it? With that in mind, we created CineMate to resolve this issue for you, here you can finally have your list of all your recommended movies and TV shows in one place, give and receive indications to your friends and give your opinion of it after watching it!
+# Hi, we are the "404 Team Name Not Found"! 👋
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+We are graduates from the School of Code and this is our final project, here we applied all the knowledge we gathered during our sixteen-week boot camp plus some other technologies we found out ourselves. The journey went through the ideation stage, user research, wireframe planning, and finally coding. All of it following the Agile principles, coming back, reassessing, and reformulating our original plan, it is still in progress but our MVP is available to use.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Authors
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- [Ben Feemantle](https://github.com/bennyfreemantle)
+- [Lani Irvin](https://github.com/lani-irving)
+- [Gabriel de Oliveira](https://github.com/GabrielFdeOliveira)
+- [Tendai Karuwo](https://github.com/Tendaik96)
+- [Fardosa Diini](https://github.com/diinif)
+- [Marcel Maynar](https://github.com/coffeebeans001)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Next.js, TailwindCSS, TypeScript, SupaBase.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Roadmap
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Add a "follow" feature.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Add a "friends list" feature.
 
-## Deploy on Vercel
+- Add the hability to comment under recommendation.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Introduce comprehensive tests.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
