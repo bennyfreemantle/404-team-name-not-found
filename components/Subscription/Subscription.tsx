@@ -33,7 +33,7 @@ export default function Subscription() {
     <>
       <div className="container p-3 mx-auto">
         <p className="text-amber-50 text-center text-4xl my-8">SUBSCRIPTION</p>
-        <div className="flex flex-col items-center md:flex-row md:justify-center">
+        <div className="flex flex-col items-center md:flex-row md:justify-center" data-testid="SubsCard">
           <SubsCard
             title="Film Enthusiast"
             price="£0.00"
