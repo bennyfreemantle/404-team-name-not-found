@@ -5,17 +5,17 @@ import { BsInfoCircleFill } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
 
 export default function AllMoviesCard({
-  addMovieToUser,
+  handleMovieClick,
   movie,
 }: {
-  addMovieToUser: (movie: MovieResult) => void;
+  handleMovieClick: (movie: MovieResult) => void;
   movie: MovieResult;
 }) {
   return (
     <div className="flex flex-col">
       <div className="drop-shadow-xl rounded-md bg-amber-50">
         <Image
-          onClick={() => addMovieToUser(movie)}
+          onClick={() => handleMovieClick(movie)}
           className="absolute z-10 left-0 top-0 cursor-pointer"
           src="/bookmark.svg"
           alt="bookmark icon"
