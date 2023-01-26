@@ -4,11 +4,6 @@ import { useState } from "react";
 import CTAButton from "../CTAButton/CTAButton";
 import Link from "next/link";
 
-//if one button is checked (checked = true) then the other two are not checked (false)
-// when user clicks onto a new card, the state of previous checked button should return to being false
-//if one is set to true, the other two should be set to false
-// so far, the issue we're having is that the state doesn't change when the next item is clicked (ie it's being changed to true on click, and staying true)
-
 const freeDetail = [
   "Recommend 30 Movies & Shows",
   "Web, IOS & Android app",

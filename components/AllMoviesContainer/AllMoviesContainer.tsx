@@ -9,14 +9,22 @@ import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { Database } from "../../types/supabase";
 import Image from "next/image";
 import AllMoviesCard from "../AllMoviesCard/AllMoviesCard";
+import Swal from "sweetalert2"; 
+import { useRouter } from "next/router";
+
+const swal = Swal.mixin({
+  buttonsStyling: true,
+});
 
 export default function AllMoviesContainer({ pageNumber }: any) {
   const user = useUser();
+  const router = useRouter();
   const supabase = useSupabaseClient<Database>();
   const [movies, setMovies] = useState<MovieResult[]>();
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const debouncedSearchTerm = useDebounce<any>(searchTerm, 500);
+
 
   useEffect(
     () => {
@@ -47,8 +55,58 @@ export default function AllMoviesContainer({ pageNumber }: any) {
     return response.results;
   }
 
+  function handleMovieClick(movie: MovieResult) {
+
+    // add an alert for the user to add the move
+    // add movie to our db
+    swal
+      .fire({
+        title: "Add this movie ?",
+        text: "You can view added movies on your recommended movie page",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, add movie",
+        cancelButtonText: "No, cancel",
+        reverseButtons: true,
+        background: "#fffbeb",
+        cancelButtonColor: "#F87171",
+        confirmButtonColor: "#1E293B",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          if (!user){
+          swal
+      .fire({
+        title: "Sorry, you are not logged in",
+        text: "Please, log in",
+        icon: "error",
+        showCancelButton: true,
+        confirmButtonText: "Login",
+        cancelButtonText: "No, cancel",
+        reverseButtons: true,
+        background: "#fffbeb",
+        cancelButtonColor: "#F87171",
+        confirmButtonColor: "#1E293B",
+          })
+      .then((result) => {
+        if (result.isConfirmed) {
+          router.push("/login")
+        } else {
+          swal.fire({
+            title: "Added",
+            text: "Your movie has been added",
+            background: "#fffbeb",
+            confirmButtonColor: "#1E293B",
+          });
+          
+          addMovieToUser(movie)
+      }
+      })}
+  }});
+
+
   async function addMovieToUser(movie: MovieResult) {
-    if (confirm("Do you want to add this film to your list?") === true) {
+    
       if (!user) return;
       try {
         const {
@@ -71,7 +129,6 @@ export default function AllMoviesContainer({ pageNumber }: any) {
         console.log(error);
       }
     }
-  }
 
   return (
     <div className="w-full flex flex-col gap-8 justify-center-center bg-slate-700">
@@ -94,11 +151,11 @@ export default function AllMoviesContainer({ pageNumber }: any) {
         {movies?.map((movie: MovieResult) => (
           <AllMoviesCard
             key={movie.id}
-            addMovieToUser={addMovieToUser}
+            addMovieToUser={handleMovieClick}
             movie={movie}
           />
         ))}
       </div>
     </div>
   );
-}
+}};
