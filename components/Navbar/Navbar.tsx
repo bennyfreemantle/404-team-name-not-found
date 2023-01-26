@@ -9,12 +9,13 @@ export default function Navbar() {
 
   return (
     <div>
-      <nav className="flex items-center">
+      <nav className="flex items- justify-end">
         <button
           onClick={() => setIsNavOpen(!isNavOpen)}
           className="btn btn-square btn-ghost text-amber-50"
         >
-          {isNavOpen ? "" : <RxHamburgerMenu size={40} />}
+          {isNavOpen ? "" : <RxHamburgerMenu size={50} data-testid="hamburguer-menu"/>}
+
         </button>
       </nav>
 
@@ -35,9 +36,6 @@ export default function Navbar() {
             </Link>
             <Link href="/movierecs" onClick={() => setIsNavOpen(false)}>
               <li className="text-2xl">Your Movie List</li>
-            </Link>
-            <Link href="/" onClick={() => setIsNavOpen(false)}>
-              <li className="text-2xl">Friends List</li>
             </Link>
             <div className="absolute bottom-20">
               <LoginButton />

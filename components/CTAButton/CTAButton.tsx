@@ -3,7 +3,7 @@ import React from "react";
 type CTAButtonProp = {
   className?: string;
   text: string;
-  handleClick: () => void;
+  handleClick?: () => void;
 };
 
 export default function CTAButton({

@@ -1,30 +1,30 @@
-import { MovieResult } from "moviedb-promise";
 import Image from "next/image";
 import React from "react";
+import { Movies } from "../RecommendedContainer";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
 
-export default function AllMoviesCard({
-  addMovieToUser,
+export default function MovieCard({
   movie,
+  handleDelete,
 }: {
-  addMovieToUser: (movie: MovieResult) => void;
-  movie: MovieResult;
+  movie: Movies;
+  handleDelete: (movie: Movies) => void;
 }) {
   return (
     <div className="flex flex-col">
       <div className="drop-shadow-xl rounded-md bg-amber-50">
         <Image
-          onClick={() => addMovieToUser(movie)}
+          onClick={() => handleDelete(movie)}
           className="absolute z-10 left-0 top-0 cursor-pointer"
-          src="/bookmark.svg"
-          alt="bookmark icon"
-          width={40}
-          height={40}
+          src="/delete.svg"
+          alt="delete icon"
+          width={50}
+          height={50}
         />
         <div className="relative w-32 h-40 md:w-40 md:h-52 lg:w-48 lg:h-64">
           <Image
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w500${movie.image_url}`}
             fill
             priority={true}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -35,7 +35,7 @@ export default function AllMoviesCard({
         <div className="flex flex-1 items-center justify-between text-slate-700 text-md p-1">
           <div className="flex items-center gap-1">
             <AiFillStar className="text-red-500" size={20} />
-            <p className="font-semibold">{movie.vote_average}</p>
+            <p className="font-semibold">{movie.rating}</p>
           </div>
           <a
             target="_blank"

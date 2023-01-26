@@ -22,79 +22,83 @@ export default function AllMoviesContainer({ pageNumber }: any) {
     () => {
       if (debouncedSearchTerm) {
         setIsSearching(true);
-        searchCharacters(debouncedSearchTerm).then((results) => {
+        filterMovies(debouncedSearchTerm).then((results) => {
           setIsSearching(false);
           setMovies(results);
         });
       } else {
-        setMovies([]);
+        searchPopularMovies();
       }
     },
     [debouncedSearchTerm] // Only call effect if debounced search term changes
   );
 
   useEffect(() => {
-    async function searchPopularMovies() {
-      const response = await moviedb.moviePopular(pageNumber);
-      setMovies(response.results);
-    }
-    if (!searchTerm) {
-      searchPopularMovies();
-    }
-  });
+    searchPopularMovies();
+  }, [pageNumber]);
 
-  async function addMovieToUser(movie: MovieResult) {
-    if (confirm('Do you want to add this film to your list?') === true){  
-    if (!user) return;
-    try {
-      const {
-        data: movieData,
-        error,
-        status,
-      } = await supabase.from("movies").insert([
-        {
-          movie_id: movie.id,
-          title: movie.title,
-          image_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-          user_id: user.id,
-        },
-      ]);
-      if (error && status !== 406) {
-        throw error;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  async function searchPopularMovies() {
+    const response = await moviedb.moviePopular(pageNumber);
+    setMovies(response.results);
   }
 
-  async function searchCharacters(search: SearchMovieRequest) {
+  async function filterMovies(search: SearchMovieRequest) {
     const response = await moviedb.searchMovie(search);
     return response.results;
   }
 
+  async function addMovieToUser(movie: MovieResult) {
+    if (confirm("Do you want to add this film to your list?") === true) {
+      if (!user) return;
+      try {
+        const {
+          data: movieData,
+          error,
+          status,
+        } = await supabase.from("movies").insert([
+          {
+            movie_id: movie.id,
+            title: movie.title,
+            image_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+            user_id: user.id,
+            rating: movie.vote_average,
+          },
+        ]);
+        if (error && status !== 406) {
+          throw error;
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
   return (
-    <div className="w-full flex flex-wrap relative gap-y-8 gap-x-4 justify-evenly bg-slate-700 m-4">
-      <Image
-        src="/search.svg"
-        alt="search icon"
-        width={25}
-        height={25}
-        className="left-4 top-4 absolute w-5"
-      />
-      <input
-        placeholder="Search movies..."
-        className="bg-slate-800 text-amber-50 indent-9 p-3 rounded-md text-lg w-full"
-        type="text"
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      {movies?.map((movie: MovieResult) => (
-        <AllMoviesCard
-          key={movie.id}
-          addMovieToUser={addMovieToUser}
-          movie={movie}
+    <div className="w-full flex flex-col gap-8 justify-center-center bg-slate-700">
+      <div className="relative">
+        <Image
+          src="/search.svg"
+          alt="search icon"
+          width={25}
+          height={25}
+          className="left-4 top-4 absolute w-5"
         />
-      ))}
+        <input
+          placeholder="Search movies..."
+          className="bg-slate-800 text-amber-50 indent-9 p-3 rounded-md text-lg w-full"
+          type="text"
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+      <div className="w-full flex flex-wrap gap-12 justify-evenly">
+        {movies?.map((movie: MovieResult) => (
+          <AllMoviesCard
+            key={movie.id}
+            addMovieToUser={addMovieToUser}
+            movie={movie}
+          />
+        ))}
+      </div>
     </div>
   );
 }
