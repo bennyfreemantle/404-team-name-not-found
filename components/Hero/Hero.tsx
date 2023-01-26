@@ -17,8 +17,7 @@ export default function Hero() {
       </div>
       <div className="p-3 flex flex-col gap-12 items-center text-center z-0 absolute top-1/3 w-full">
         <h1 className="text-amber-50 text-2xl md:w-2/3 md:text-4xl lg:w-3/5">
-          Losing track of all the movies & TV shows that friends recommend to
-          you ?
+          Losing track of all the movies that your friends recommend to you ?
         </h1>
         <a href="#subscription-section">
           <CTAButton
