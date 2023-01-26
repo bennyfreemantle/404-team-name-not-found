@@ -9,6 +9,11 @@ import {
 } from "@supabase/auth-helpers-react";
 import { MdDelete } from "react-icons/md";
 import MovieCard from "./MovieCard/MovieCard";
+import Swal from "sweetalert2";
+
+const swal = Swal.mixin({
+  buttonsStyling: true,
+});
 
 export type Movies = Database["public"]["Tables"]["movies"]["Row"];
 
@@ -55,25 +60,49 @@ export default function RecommendedContainer({
     }
   }
 
-  async function handleDelete(movie: Movies) {
-    if (confirm("Do you want to delete this film from your list?") === true) {
-      if (!user) return;
-      try {
-        const {
-          data: movieData,
-          error,
-          status,
-        } = await supabase.from("movies").delete().eq("id", movie.id);
-        if (error && status !== 406) {
-          throw error;
-        } else {
-          getMovies();
+  async function handleMovieClick(movie: Movies) {
+    swal
+      .fire({
+        title: "Delete?",
+        text: "This movie will be deleted from your list.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete movie",
+        cancelButtonText: "No, cancel",
+        reverseButtons: true,
+        background: "#fffbeb",
+        cancelButtonColor: "#F87171",
+        confirmButtonColor: "#1E293B",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          swal.fire({
+            title: "Deleted",
+            text: "Your movie has been deleted",
+            background: "#fffbeb",
+            confirmButtonColor: "#1E293B",
+          });
+          handleDelete(movie);
         }
-      } catch (error) {
-        console.log(error);
+      });
+  }
+
+  async function handleDelete(movie: Movies) {
+    try {
+      const {
+        data: movieData,
+        error,
+        status,
+      } = await supabase.from("movies").delete().eq("id", movie.id);
+      if (error && status !== 406) {
+        throw error;
+      } else {
+        getMovies();
       }
-      console.log(movie);
+    } catch (error) {
+      console.log(error);
     }
+    console.log(movie);
   }
 
   // TODO : Generate and save the base url for the card link /tv or /movie
@@ -102,7 +131,7 @@ export default function RecommendedContainer({
               <MovieCard
                 key={movie.id}
                 movie={movie}
-                handleDelete={handleDelete}
+                handleMovieClick={handleMovieClick}
               />
             );
           })}

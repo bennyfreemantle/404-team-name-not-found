@@ -6,16 +6,16 @@ import { AiFillStar } from "react-icons/ai";
 
 export default function MovieCard({
   movie,
-  handleDelete,
+  handleMovieClick,
 }: {
   movie: Movies;
-  handleDelete: (movie: Movies) => void;
+  handleMovieClick: (movie: Movies) => void;
 }) {
   return (
     <div className="flex flex-col">
       <div className="drop-shadow-xl rounded-md bg-amber-50">
         <Image
-          onClick={() => handleDelete(movie)}
+          onClick={() => handleMovieClick(movie)}
           className="absolute z-10 left-0 top-0 cursor-pointer"
           src="/delete.svg"
           alt="delete icon"
