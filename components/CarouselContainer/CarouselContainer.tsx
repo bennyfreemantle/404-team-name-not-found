@@ -8,6 +8,7 @@ import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 
 import Swal from "sweetalert2";
 import { Database } from "../../types/supabase";
+import { useRouter } from "next/router";
 
 const swal = Swal.mixin({
   buttonsStyling: true,
@@ -36,6 +37,9 @@ const responsive = {
 };
 
 export function CarouselContainer() {
+
+  const router = useRouter();
+
   const user = useUser();
   const supabase = useSupabaseClient<Database>();
 
@@ -48,6 +52,57 @@ export function CarouselContainer() {
     }
     List();
   }, []);
+
+  async function handleMovieClick(movie: MovieResult) {
+    // add an alert for the user to add the move
+    // add movie to our db
+    swal
+      .fire({
+        title: "Add this movie ?",
+        text: "You can view added movies on your recommended movie page",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, add movie",
+        cancelButtonText: "No, cancel",
+        reverseButtons: true,
+        background: "#fffbeb",
+        cancelButtonColor: "#F87171",
+        confirmButtonColor: "#1E293B",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          if (!user) {
+            swal
+              .fire({
+                title: "Sorry, you are not logged in",
+                text: "Please, log in",
+                icon: "error",
+                showCancelButton: true,
+                confirmButtonText: "Login",
+                cancelButtonText: "No, cancel",
+                reverseButtons: true,
+                background: "#fffbeb",
+                cancelButtonColor: "#F87171",
+                confirmButtonColor: "#1E293B",
+              })
+              .then((result) => {
+                if (result.isConfirmed) {
+                  router.push("/login");
+                }
+              });
+          } else {
+            swal.fire({
+              title: "Added",
+              text: "Your movie has been added",
+              background: "#fffbeb",
+              confirmButtonColor: "#1E293B",
+            });
+
+            addMovieToUser(movie);
+          }
+        }
+      });
+  }
 
   async function addMovieToUser(movie: MovieResult) {    
       if (!user) return;
@@ -72,37 +127,6 @@ export function CarouselContainer() {
         console.log(error);
       }
     }
-  
-
-  function handleMovieClick(movie: MovieResult) {
-    // add an alert for the user to add the move
-    // add movie to our db
-    swal
-      .fire({
-        title: "Add this movie ?",
-        text: "You can view added movies on your recommended movie page",
-        icon: "question",
-        showCancelButton: true,
-        confirmButtonText: "Yes, add movie",
-        cancelButtonText: "No, cancel",
-        reverseButtons: true,
-        background: "#fffbeb",
-        cancelButtonColor: "#F87171",
-        confirmButtonColor: "#1E293B",
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          swal.fire({
-            title: "Added",
-            text: "Your movie has been added",
-            background: "#fffbeb",
-            confirmButtonColor: "#1E293B",
-          });
-          
-          addMovieToUser(movie)
-        }
-      });
-  }
 
   return (
     <div className="m-4">
