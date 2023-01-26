@@ -27,6 +27,8 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
     "react-multi-carousel": "^2.8.2",
+    "sweetalert2": "^11.7.0",
+    "sweetalert2-react-content": "^5.0.7",
     "typescript": "4.9.4"
   },
   "devDependencies": {
