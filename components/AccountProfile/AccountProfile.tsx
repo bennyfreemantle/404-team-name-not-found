@@ -11,7 +11,7 @@ import {
 import { useState, useEffect } from "react";
 
 type AccountProfileProps = {
-  session: Session;
+  session?: Session;
 };
 
 export default function AccountProfile({ session }: AccountProfileProps) {
