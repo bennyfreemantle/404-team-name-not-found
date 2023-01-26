@@ -32,7 +32,7 @@ export default function Login() {
             <div className="w-full">
               <h1 className="text-4xl text-amber-50 font-semibold mb-16 text-center">
                 Welcome Back{" "}
-                <span className="text-xs">to the school of code</span>
+                {/* <span className="text-xs">to the school of code</span> */}
               </h1>
               <Auth
                 supabaseClient={supabase}
