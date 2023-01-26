@@ -89,17 +89,17 @@ export default function AllMoviesContainer({ pageNumber }: any) {
               .then((result) => {
                 if (result.isConfirmed) {
                   router.push("/login");
-                } else {
-                  swal.fire({
-                    title: "Added",
-                    text: "Your movie has been added",
-                    background: "#fffbeb",
-                    confirmButtonColor: "#1E293B",
-                  });
-
-                  addMovieToUser(movie);
                 }
               });
+          } else {
+            swal.fire({
+              title: "Added",
+              text: "Your movie has been added",
+              background: "#fffbeb",
+              confirmButtonColor: "#1E293B",
+            });
+
+            addMovieToUser(movie);
           }
         }
       });
