@@ -14,8 +14,6 @@ const swal = Swal.mixin({
   buttonsStyling: true,
 });
 
-
-
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -37,7 +35,6 @@ const responsive = {
 };
 
 export function CarouselContainer() {
-
   const router = useRouter();
 
   const user = useUser();
@@ -104,29 +101,29 @@ export function CarouselContainer() {
       });
   }
 
-  async function addMovieToUser(movie: MovieResult) {    
-      if (!user) return;
-      try {
-        const {
-          data: movieData,
-          error,
-          status,
-        } = await supabase.from("movies").insert([
-          {
-            movie_id: movie.id,
-            title: movie.title,
-            image_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-            user_id: user.id,
-            rating: movie.vote_average,
-          },
-        ]);
-        if (error && status !== 406) {
-          throw error;
-        }
-      } catch (error) {
-        console.log(error);
+  async function addMovieToUser(movie: MovieResult) {
+    if (!user) return;
+    try {
+      const {
+        data: movieData,
+        error,
+        status,
+      } = await supabase.from("movies").insert([
+        {
+          movie_id: movie.id,
+          title: movie.title,
+          image_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          user_id: user.id,
+          rating: movie.vote_average,
+        },
+      ]);
+      if (error && status !== 406) {
+        throw error;
       }
+    } catch (error) {
+      console.log(error);
     }
+  }
 
   return (
     <div className="m-4">
@@ -147,6 +144,7 @@ export function CarouselContainer() {
                 alt="movie"
                 width={300}
                 height={300}
+                className="cursor-pointer"
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               />
             );
