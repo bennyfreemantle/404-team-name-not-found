@@ -7,6 +7,8 @@ import React, { useEffect, useState } from "react";
 import { PopularMoviesRequest } from "moviedb-promise/dist/request-types";
 import moviedb from "../utils/moviedbclient";
 import AllMoviesContainer from "../components/AllMoviesContainer/AllMoviesContainer";
+import MovieFilter from "@/components/MovieFiler/MovieFilter";
+
 
 export default function MovieRecs() {
   const [pageNumber, setPageNumber] = useState<PopularMoviesRequest>({
@@ -44,7 +46,10 @@ export default function MovieRecs() {
           <p className="text-md text-amber-50 opacity-30">
             Page {pageNumber.page}
           </p>
-          <h2 className="text-amber-50 text-3xl py-5 ">All Movies</h2>
+          <div>
+              <h2 className="text-amber-50 text-3xl py-5 ">All Movies</h2>  
+              <MovieFilter/> 
+          </div>       
           <div className="flex flex-wrap">
             <AllMoviesContainer pageNumber={pageNumber} />
           </div>
